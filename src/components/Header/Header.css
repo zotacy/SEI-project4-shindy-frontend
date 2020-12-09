@@ -1,9 +1,18 @@
 h1{
+    color:white;
     margin: 10px auto;
+}
+h3{
+    margin: 0 auto;
 }
 
 #header-link{
-    text-decoration:none;
-    /* color: lightblue; */
+    color: lightblue;
     margin:5px auto;
+}
+/* Removes all text decoration from links */
+a:hover, a:visited, a:link, a:active{
+    text-decoration: none;
+    cursor:pointer;
+    color: purple;
 }

@@ -1,0 +1,67 @@
+main{
+    margin: auto;
+    margin-top:10%;
+}
+h2{
+    margin: 5px auto;
+    align-self: left;
+    float: left;
+}
+
+#player1{
+    background-color: palevioletred;
+}
+
+#playerC{
+    background-color: palegreen;
+}
+
+/*----------Player Boxes----------*/
+.playerbox{
+     border: 2px solid black;
+     border-radius: 5px;
+     margin: 20px auto;
+     padding: 10px 5px;
+     width: 80%;
+     height: 60px;
+     position: relative;
+}
+
+.char{
+    margin-bottom: 10px;
+}
+
+.hpBar{
+    background-color: green;
+    width: 100%;
+    height: 3px;
+    border: 1px solid black;
+}
+/* actionbox */
+.actionbox{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: .5fr .5fr;
+    width: 75%;
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+}
+
+#attack{
+    grid-row: 1;
+    grid-column: 1;
+}
+
+#defend{
+    grid-row: 1;
+    grid-column: 2;
+}
+#recover{
+    grid-row: 2;
+    grid-column: 1;
+}
+#trick{
+    grid-row: 2;
+    grid-column: 2;
+}

@@ -4,50 +4,45 @@ import {Route, Link, Switch} from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import GameScreen from '../GameScreen/GameScreen';
 
-const backendUrl = "http://localhost:3001/api"
+const shindyBackendUrl = "http://localhost:3001/api"
 
 class App extends Component {
   constructor(){
     super()
     this.state ={
-      characters: []
+      users: []
     }
   }
-
-  componentDidMount = ()=>{
-    this.getCharacters()
+  // Methods: Get Users & assign to this.state
+  componentDidMount=()=>{
+    this.getUsers()
   }
-  getCharacters = async()=>{
-    const response = await axios(`${backendUrl}/characters`)
+  getUsers= async()=>{
+    const response = await axios(`${shindyBackendUrl}/users`)
     this.setState({
-      characters: response.data.allCharacters
+      users: response.data.allUsers
     })
+  }
+  // Methods: Signup, Login, Logout
+  signup=(event)=>{
+    event.preventDefault()
+
+    this.getUsers()
+  }
+  login=(event)=>{
+    event.preventDefault()
+
+    this.getUsers()
+  }
+  logout=(event)=>{
+    event.preventDefault()
+
+    this.getUsers()
   }
 
-  addCharacter = async(event)=>{ //add event because it is connected to a form
-    event.preventDefault()
-    await axios.post(`${backendUrl}/characters`,{
-      name: event.target.name.value
-    })
-    this.getCharacters()
-  }
-  updateCharacter = async(event)=>{
-    event.preventDefault()
-    let characterId = event.target.characterId.value
-    await axios.put(`${backendUrl}/characters/${characterId}`,{
-      name: event.target.name.value,
-      characterId: characterId
-    })
-    this.getCharacters()
-  }
-  deleteCharacter = async(event)=>{
-    event.preventDefault()
-    let characterId = event.target.id
-    await axios.delete(`${backendUrl}/characters/${characterId}`)
-    this.getCharacters()
-  }
-
+  // Render Pages
   render(){
     return (
       <div className="App">
@@ -57,7 +52,11 @@ class App extends Component {
         </header>
       {/* Main Body */}
         <main className="App-main">
-          
+          <Switch>
+            <Route path="/gamescreen" component={()=>
+              <GameScreen/>
+            }/>
+          </Switch>
         </main>
       {/* Footer */}
         <footer className="footer">
