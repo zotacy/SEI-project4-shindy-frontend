@@ -1,0 +1,9 @@
+h1{
+    margin: 10px auto;
+}
+
+#header-link{
+    text-decoration:none;
+    /* color: lightblue; */
+    margin:5px auto;
+}

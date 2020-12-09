@@ -26,7 +26,7 @@ The purpose of this project is to develop a simple and fun turn-based combat gam
 
 |**Components**|**Description**|
 |--------------|---------------|
-|HomePage|...|
+|App (Homepage)|Main screen when app is pulled up. Includes: intro to game, method to Login/Signup, method to play game (as guest)|
 |Profile|User profile which contains user information as well as the users specific characters and method to play new games. Users are able to update their personal information as well as create/update their specific characters. The preset character(s) cannot be modified|
 |CreateCharacter|Method within user profile to create custom characters and modify their stats|
 |UpdateCharacter|Method within user profile to update custom characters and modify their stats|
