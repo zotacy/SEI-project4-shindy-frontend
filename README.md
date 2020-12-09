@@ -4,31 +4,34 @@ The purpose of this project is to develop a simple and fun turn-based combat gam
 ## Getting Started
 ### Wireframe
 ![Wireframe](public/Wireframes.png)
-WireFrame Link: https://lucid.app/lucidchart/d710dfb3-2dae-41c6-b038-c00fec8383a6/edit?beaconFlowId=CC9809F839227E5B&page=0_0#?folder_id=home&browser=icon
+<!-- WireFrame Link: https://lucid.app/lucidchart/d710dfb3-2dae-41c6-b038-c00fec8383a6/edit?beaconFlowId=CC9809F839227E5B&page=0_0#?folder_id=home&browser=icon -->
 
 |**Set-up**|**Backend**|**Frontend**|
 |--------|----------|--------|
-|Created/Edited ReadMe|Setup PostGreSQl Database|Created React App|
-|Created Repo and main branch|Designed app page wireframes|Import Data from backend API|
-|Designed app page wireframes|Built MVC|Components: Homepage, Profile, Create Character, Update Character|
-|...|Stored Data: Users, Authentication, Characters|CRUD & Game-Logic|
-|...|Consistency/efficiency|CSS/Styling/Layout|
+|Create/Edit ReadMe|Setup PostGreSQl Database|Created React App|
+|Create Repos (backend/frontend)|Setup MVC|Import Data from backend API|
+|Create Wireframes|Stored Data: Authentication, User, Character, UserCharacter|Components: Homepage, Profile, Create Character, Update Character, GameScreen|
+|...|...|CRUD & Game-Logic|
+|...|Consistency/Efficiency|CSS/Styling/Layout|
 
 ## Technology Used
 * Visual Studio Code
-* Node.js/Express, PostGreSQL
-* React Web Framework, DOM-Maniplulation, MVC
+* Node.js/Express, MVC, PostGreSQL
+* React Web Framework, DOM-Maniplulation 
 * APIs, Axios
-* Heroku
-
+* Heroku, GitHub
 * Lucid Chart (Wireframe Designs)
 
 ## App Components
 
 |**Components**|**Description**|
 |--------------|---------------|
-|...|...|
-
+|HomePage|...|
+|Profile|User profile which contains user information as well as the users specific characters and method to play new games. Users are able to update their personal information as well as create/update their specific characters. The preset character(s) cannot be modified|
+|CreateCharacter|Method within user profile to create custom characters and modify their stats|
+|UpdateCharacter|Method within user profile to update custom characters and modify their stats|
+|GameScreen|This is the screen where game play occurs and game-logic is implementd. It is a turn-based game. Inital setup will allow user to play against the computer & utlizes a set of 4 moves.|
+|Game Logic|Win/Lose Cases, Determine Turns, Utlizes set fo 4 moves|
 
 ## General Requirements/MVP
 Requirements for the project are as follows:
@@ -39,7 +42,16 @@ Requirements for the project are as follows:
 
 
 ## App Features for Next Rendition
-
+1. Improved Character Customization
+    - Add additional preset characters
+    - Add character traits (combat oriented)
+    - Improved css/styling for characters
+2. Game Logic
+    - Improved css/styling/layout
+    - PvP
+    - Include character-specific moves/traits
+3. Deployment
+    - Optimized for mobile and web
 
 ## User Stories
 - As a user, I should be able to create an account.
