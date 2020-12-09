@@ -3,7 +3,8 @@ The purpose of this project is to develop a simple and fun turn-based combat gam
 
 ## Getting Started
 ### Wireframe
-![image]https://lucid.app/lucidchart/d710dfb3-2dae-41c6-b038-c00fec8383a6/edit?beaconFlowId=CC9809F839227E5B&page=0_0#?folder_id=home&browser=icon
+![Wireframe](public/Wireframes.png)
+WireFrame Link: https://lucid.app/lucidchart/d710dfb3-2dae-41c6-b038-c00fec8383a6/edit?beaconFlowId=CC9809F839227E5B&page=0_0#?folder_id=home&browser=icon
 
 |**Set-up**|**Backend**|**Frontend**|
 |--------|----------|--------|
