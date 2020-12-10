@@ -21,7 +21,7 @@ class GameScreen extends Component{
                 </div>
                     {/* <!-- Middle Space --> */}
                 <div classNameName="middle-space">
-                    <h1>Shindy</h1>
+                    <h1>Battle!</h1>
                 </div>
                 {/* <!-- Computer --> */}
                 <div className="playerbox" id="playerC">
