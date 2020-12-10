@@ -1,0 +1,27 @@
+/* Profile Info Form */
+form{
+    font-weight: bold;
+    font-size: 1.25em;
+}
+input {
+    border: hidden;
+    background-color: none;
+    font-size: .9em;
+    margin:1px;
+}
+.no-outline:focus {
+    outline: none;
+}
+#name{
+    width:283px;
+    margin-left:5px;
+    border-radius: 5px;
+    padding-left: 5px;
+    
+}
+#username{
+    width:240px;
+    margin-left:5px;
+    border-radius: 5px;
+    padding-left: 5px;
+}

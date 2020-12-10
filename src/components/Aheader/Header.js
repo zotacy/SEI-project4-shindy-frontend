@@ -7,9 +7,7 @@ class Header extends Component{
         return(
             <header className="App-header">
                 <Link to ="/"><h1 id="header-link">Shindy</h1></Link>   
-                <Link to="/gamescreen"><h3>Play</h3></Link>
-                <Link to="/login"><button>Login</button></Link>
-                <Link to="/signup"><button>Signup</button></Link>           
+                <Link to="/gamescreen"><h3>Play</h3></Link>                     
             </header>
         )
     }

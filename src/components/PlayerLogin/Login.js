@@ -5,7 +5,16 @@ import './Forms.css';
 class Login extends Component{
     render(){
         return(
-            <h1>Login</h1>
+            <div>
+                <h1>Login</h1>
+                <form>
+                <input type="text" name="username" placeholder="Username"/><br/>
+                <input type="text" name="password" placeholder="*******"/><br/>
+            
+                <input type="hidden" name="loggedIn" value="true"/><br/>
+                <input id="submit"  type="submit" value="Login" />
+            </form>
+            </div>
         )
     }
 }

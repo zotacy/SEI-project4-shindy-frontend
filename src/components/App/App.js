@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios'
 import {Route, Link, Switch} from 'react-router-dom';
 import './App.css';
+import Homepage from '../Homepage/Homepage'
 import Aheader from '../Aheader/Header';
 import Afooter from '../Afooter/Footer';
 import Login from '../PlayerLogin/Login';
@@ -53,8 +54,9 @@ class App extends Component {
           <Aheader/>
         </header>
       {/* Main Body */}
-        <main className="App-main">
+        <main className="App-main"> 
           <Switch>
+            <Route exact path="/" component={()=><Homepage/>}/>
             <Route path="/gamescreen" component={()=><GameScreen/>}/>
             <Route path="/login" component={()=><Login/>}/>
             <Route path="/signup" component={()=><Signup/>}/>
