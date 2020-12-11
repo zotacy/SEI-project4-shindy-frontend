@@ -4,6 +4,8 @@ import './Forms.css';
 
 class Signup extends Component{
     render(){
+      const allUsers = this.props.users;
+      
         return(
           <main class="newUser">
             <h1> Create new account</h1>

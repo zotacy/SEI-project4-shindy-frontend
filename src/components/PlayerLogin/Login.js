@@ -4,6 +4,8 @@ import './Forms.css';
 
 class Login extends Component{
     render(){
+        const allUsers = this.props.users;
+        
         return(
             <div>
                 <h1>Login</h1>

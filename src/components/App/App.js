@@ -15,12 +15,14 @@ class App extends Component {
   constructor(){
     super()
     this.state ={
-      users: []
+      users: [],
+      characters:[]
     }
   }
   // Methods: Get Users & assign to this.state
   componentDidMount=()=>{
     this.getUsers()
+    this.getCharacters()
   }
   getUsers= async()=>{
     const response = await axios(`${shindyBackendUrl}/users`)
@@ -28,6 +30,12 @@ class App extends Component {
       users: response.data.allUsers
     })
   }
+  getCharacters = async()=>{
+    const response = await axios(`${shindyBackendUrl}/characters`)
+    this.setState({
+        characters: response.data.allCharacters
+    })
+}
   // Methods: Signup, Login, Logout
   signup=(event)=>{
     event.preventDefault()
@@ -44,6 +52,29 @@ class App extends Component {
 
     this.getUsers()
   }
+  // Methods: 
+  addCharacter = async(event)=>{ //add event because it is connected to a form
+      event.preventDefault()
+      await axios.post(`${shindyBackendUrl}/characters`,{
+          name: event.target.name.value
+      })
+      this.getCharacters()
+  }
+  updateCharacter = async(event)=>{
+      event.preventDefault()
+      let characterId = event.target.characterId.value
+      await axios.put(`${shindyBackendUrl}/characters/${characterId}`,{
+          name: event.target.name.value,
+          characterId: characterId
+      })
+      this.getCharacters()
+  }
+  deleteCharacter = async(event)=>{
+      event.preventDefault()
+      let characterId = event.target.id
+      await axios.delete(`${shindyBackendUrl}/characters/${characterId}`)
+      this.getCharacters()
+  }
 
   // Render Pages
   render(){
@@ -56,7 +87,11 @@ class App extends Component {
       {/* Main Body */}
         <main className="App-main"> 
           <Switch>
-            <Route exact path="/" component={()=><Homepage/>}/>
+            <Route exact path="/" component={()=>
+              <Homepage users={this.state.users}
+                        signup={this.signup} login={this.login} logout={this.logout}
+              />
+            }/>
             <Route path="/gamescreen" component={()=><GameScreen/>}/>
             <Route path="/login" component={()=><Login/>}/>
             <Route path="/signup" component={()=><Signup/>}/>
