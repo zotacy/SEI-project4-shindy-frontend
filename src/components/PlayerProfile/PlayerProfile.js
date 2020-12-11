@@ -1,34 +1,8 @@
 import React, {Component} from 'react';
 // import {Link} from 'react-router-dom';
-import 'PlayerProfile.css';
+import './PlayerProfile.css';
 
-class PlayerProfile extends Component{
-    constructor(){
-        super()
-        this.state={
-            name: '',
-            email: '',
-            username: '',
-            password: '',
-            characters:{}
-        }
-    }
-    updateProfile = async(event)=>{
-        event.preventDefault()
-        let userId = event.target.userId.value
-        await axios.put(`${shindyBackendUrl}/users/${userId}`,{
-            name: event.target.name.value,
-            userId: userId
-        })
-        this.getUsers()
-    }
-    deleteProfile = async(event)=>{
-        event.preventDefault()
-        let userId = event.target.id
-        await axios.delete(`${shindyBackendUrl}/users/${userId}`)
-        this.getUsers()
-    }
-
+class PlayerProfile extends Component{  
     render(){
         const paramsId = parseInt(this.props.match.params.id)
         const playerDetails= this.props.users.find(user =>{
@@ -39,7 +13,7 @@ class PlayerProfile extends Component{
         })
         return(
             <div>
-             <div className="playerInfo">
+                <div className="playerInfo">
                 <h1>{playerDetails.username}</h1>
                 <form onSubmit={this.updateProfile}>
                     Name:<input id='name' type="text" name="name" value="<%=user.name%>" /><br/>
@@ -51,11 +25,11 @@ class PlayerProfile extends Component{
                 <form onSubmit={this.deleteProfile}>
                     <input type="submit" value="Delete Profile" />
                 </form>
-             </div>
-             <div className="userList">
-                 <h1>Player Characters</h1>
-                 {playerCharacters}
-             </div>
+                </div>
+                <div className="userList">
+                    <h1>Player Characters</h1>
+                    {playerCharacters}
+                </div>
             </div>
         )
     }

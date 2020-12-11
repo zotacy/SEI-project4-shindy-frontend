@@ -3,6 +3,7 @@ import axios from 'axios'
 import {Route, Link, Switch} from 'react-router-dom';
 import './App.css';
 import Homepage from '../Homepage/Homepage'
+import PlayerProfile from '../PlayerProfile/PlayerProfile';
 import Aheader from '../Aheader/Header';
 import Afooter from '../Afooter/Footer';
 import Login from '../PlayerLogin/Login';
@@ -19,7 +20,7 @@ class App extends Component {
       characters:[]
     }
   }
-  // Methods: Get Users & assign to this.state
+  // Methods: Get Users & Characters
   componentDidMount=()=>{
     this.getUsers()
     this.getCharacters()
@@ -36,7 +37,7 @@ class App extends Component {
       characters: response.data.allCharacters
     })
 }
-  // Methods: Signup, Login, Logout
+  // Methods: User Login & Signup
   signup=(event)=>{
     event.preventDefault()
 
@@ -47,12 +48,28 @@ class App extends Component {
 
     this.getUsers()
   }
+  // Methods: User Profile
   logout=(event)=>{
     event.preventDefault()
 
     this.getUsers()
   }
-  // Methods: 
+  updateProfile = async(event)=>{
+    event.preventDefault()
+    let userId = event.target.userId.value
+    await axios.put(`${shindyBackendUrl}/users/${userId}`,{
+        name: event.target.name.value,
+        userId: userId
+    })
+    this.getUsers()
+  }
+  deleteProfile = async(event)=>{
+      event.preventDefault()
+      let userId = event.target.id
+      await axios.delete(`${shindyBackendUrl}/users/${userId}`)
+      this.getUsers()
+  }
+  // Methods: User Characters
   addCharacter = async(event)=>{ //add event because it is connected to a form
       event.preventDefault()
       await axios.post(`${shindyBackendUrl}/characters`,{
@@ -89,13 +106,17 @@ class App extends Component {
         <main className="App-main"> 
           <Switch>
             <Route exact path="/" component={()=>
-              <Homepage users={this.state.users} characters={this.state.characters}
-                        signup={this.signup} login={this.login} logout={this.logout}
-              />
+              <Homepage users={this.state.users} characters={this.state.characters}/>
             }/>
             <Route path="/gamescreen" component={()=><GameScreen/>}/>
-            <Route path="/login" component={()=><Login/>}/>
-            <Route path="/signup" component={()=><Signup/>}/>
+            <Route path="/login" component={()=><Login users={this.state.users} login={this.login}/>}/>
+            <Route path="/signup" component={()=><Signup users={this.state.users} signup={this.signup}/>}/>
+            <Route path="/user/:id" component={()=>
+              <PlayerProfile users={this.state.users} characters={this.state.characters}
+                             addCharacter={this.addCharacter} updateCharacter={this.updateCharacter} deleteCharacter={this.deleteCharacter}
+                             logout={this.logout} updateProfile ={this.updateProfile} deleteProfile={this.deleteProfile}
+              />
+            }/>
           </Switch>
         </main>
       {/* Footer */}
