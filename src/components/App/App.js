@@ -31,9 +31,9 @@ class App extends Component {
     })
   }
   getCharacters = async()=>{
-    const response = await axios(`${shindyBackendUrl}/characters`)
+    const response = await axios(`${shindyBackendUrl}/chars`)
     this.setState({
-        characters: response.data.allCharacters
+      characters: response.data.allCharacters
     })
 }
   // Methods: Signup, Login, Logout
@@ -78,6 +78,7 @@ class App extends Component {
 
   // Render Pages
   render(){
+    // console.log(this.state)
     return (
       <div className="App">
       {/* Header */}
@@ -88,7 +89,7 @@ class App extends Component {
         <main className="App-main"> 
           <Switch>
             <Route exact path="/" component={()=>
-              <Homepage users={this.state.users}
+              <Homepage users={this.state.users} characters={this.state.characters}
                         signup={this.signup} login={this.login} logout={this.logout}
               />
             }/>

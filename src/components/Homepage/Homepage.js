@@ -4,6 +4,8 @@ import './Homepage.css'
 
 class HomePage extends Component{
     render(){
+        console.log(this.props)
+
         return(
             <main className="App-main">
             <h1>Homepage</h1>

@@ -10,31 +10,51 @@ class PlayerProfile extends Component{
             email: '',
             username: '',
             password: '',
-            characters:[]
+            characters:{}
         }
+    }
+    updateProfile = async(event)=>{
+        event.preventDefault()
+        let userId = event.target.userId.value
+        await axios.put(`${shindyBackendUrl}/users/${userId}`,{
+            name: event.target.name.value,
+            userId: userId
+        })
+        this.getUsers()
+    }
+    deleteProfile = async(event)=>{
+        event.preventDefault()
+        let userId = event.target.id
+        await axios.delete(`${shindyBackendUrl}/users/${userId}`)
+        this.getUsers()
     }
 
     render(){
+        const paramsId = parseInt(this.props.match.params.id)
+        const playerDetails= this.props.users.find(user =>{
+            return user.id === paramsId
+        })
+        const playerCharacters= playerDetails.Characters.map(character =>{
+            return <li key={character.id} className="no-bullets">{character.name}</li>
+        })
         return(
             <div>
              <div className="playerInfo">
-                <h1>Player Profile</h1>
-                <form>
+                <h1>{playerDetails.username}</h1>
+                <form onSubmit={this.updateProfile}>
                     Name:<input id='name' type="text" name="name" value="<%=user.name%>" /><br/>
                     Username:<input id='username' type="text" name="username" value="<%=user.username%>" /><br/>
-                    Bio:<input id='bio' class="no-outline" type="text" name="bio" value="<%=user.bio%>" /><br />
                     <br/>
-                    {/* <!-- Edit Profile --> */}
                     <input type="submit" value="Edit Profile" />
                 </form>
 
-                {/* <!-- Delete Profile --> */}
-                <form action="/users/<%= user.id %>?_method=DELETE" method="POST">
+                <form onSubmit={this.deleteProfile}>
                     <input type="submit" value="Delete Profile" />
                 </form>
              </div>
-             <div className="characterList">
+             <div className="userList">
                  <h1>Player Characters</h1>
+                 {playerCharacters}
              </div>
             </div>
         )
