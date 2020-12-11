@@ -4,12 +4,23 @@ import './PlayerProfile.css';
 
 class PlayerProfile extends Component{  
     render(){
-        const paramsId = parseInt(this.props.match.params.id)
-        const playerDetails= this.props.users.find(user =>{
-            return user.id === paramsId
-        })
+        console.log(this.props)
+        // const paramsId = parseInt(this.props.match.params.id)
+        const playerDetails= this.props.users.map((user=>{
+            return(
+                <div key={user.id} className="no-bullets">
+                    <h1>{user.username}</h1>
+                    <button key={user.id} id={user.id} onClick={this.props.deleteProfile()}>
+                        Delete
+                    </button>
+                </div>
+            )
+        }))
+        console.log(playerDetails)
         const playerCharacters= playerDetails.Characters.map(character =>{
-            return <li key={character.id} className="no-bullets">{character.name}</li>
+            return(
+                <li key={character.id} className="no-bullets">{character.name}</li>
+            ) 
         })
         return(
             <div>

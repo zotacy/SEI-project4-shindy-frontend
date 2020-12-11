@@ -38,14 +38,22 @@ class App extends Component {
     })
 }
   // Methods: User Login & Signup
-  signup=(event)=>{
+  signup= async(event)=>{
     event.preventDefault()
-
+    await axios.post(`${shindyBackendUrl}/auth/signup`,{
+      name: event.target.name.value,
+      email: event.target.name.value,
+      username: event.target.name.value,
+      password: event.target.password.value,
+    })
     this.getUsers()
   }
-  login=(event)=>{
+  login= async(event)=>{
     event.preventDefault()
-
+    await axios.post(`${shindyBackendUrl}/auth/login`,{
+      username: event.target.username.value,
+      password: event.target.password.value
+    })
     this.getUsers()
   }
   // Methods: User Profile
@@ -58,8 +66,10 @@ class App extends Component {
     event.preventDefault()
     let userId = event.target.userId.value
     await axios.put(`${shindyBackendUrl}/users/${userId}`,{
-        name: event.target.name.value,
-        userId: userId
+      name: event.target.name.value,
+      username: event.target.username.value,
+      password: event.target.password.value,
+      userId: userId
     })
     this.getUsers()
   }
@@ -73,7 +83,13 @@ class App extends Component {
   addCharacter = async(event)=>{ //add event because it is connected to a form
       event.preventDefault()
       await axios.post(`${shindyBackendUrl}/characters`,{
-          name: event.target.name.value
+        name: event.target.name.value,
+        hp: event.target.hp.value,
+        attack: event.target.attack.value,
+        defense: event.target.defense.value,
+        recover: event.target.recover.value,
+        spd: event.target.spd.value,
+        userId: event.target.userId.value
       })
       this.getCharacters()
   }
@@ -108,10 +124,10 @@ class App extends Component {
             <Route exact path="/" component={()=>
               <Homepage users={this.state.users} characters={this.state.characters}/>
             }/>
-            <Route path="/gamescreen" component={()=><GameScreen/>}/>
-            <Route path="/login" component={()=><Login users={this.state.users} login={this.login}/>}/>
-            <Route path="/signup" component={()=><Signup users={this.state.users} signup={this.signup}/>}/>
-            <Route path="/user/:id" component={()=>
+            <Route path="/gamescreen" component={(event)=><GameScreen/>}/>
+            <Route path="/login" component={(event)=><Login users={this.state.users} login={this.login}/>}/>
+            <Route path="/signup" component={(event)=><Signup users={this.state.users} signup={this.signup}/>}/>
+            <Route path="/users/:id" component={(event)=>
               <PlayerProfile users={this.state.users} characters={this.state.characters}
                              addCharacter={this.addCharacter} updateCharacter={this.updateCharacter} deleteCharacter={this.deleteCharacter}
                              logout={this.logout} updateProfile ={this.updateProfile} deleteProfile={this.deleteProfile}
