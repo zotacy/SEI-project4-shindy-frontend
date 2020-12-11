@@ -7,7 +7,8 @@ class Header extends Component{
         return(
             <header className="App-header">
                 <Link to ="/"><h1 id="header-link">Shindy</h1></Link>   
-                <Link to="/gamescreen"><h3>Play</h3></Link>                     
+                <Link to="/gamescreen"><h3>Play</h3></Link>
+                <Link to={`/profile/${this.props.userId}`}>Profile</Link>                     
             </header>
         )
     }
