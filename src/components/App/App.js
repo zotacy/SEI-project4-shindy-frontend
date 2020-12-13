@@ -13,8 +13,8 @@ import GameScreen from '../GameScreen/GameScreen';
 const shindyBackendUrl = "http://localhost:3001/api"
 
 class App extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state ={
       user:{},
       userId: null,
@@ -131,8 +131,9 @@ class App extends Component {
             }/>
             <Route path="/signup" component={(routerProps)=>
               <Signup {...routerProps} user={this.state.user} signup={this.signup}/>}/>
-            <Route path="/users/:id" component={(routerProps)=>
-              <PlayerProfile user={this.state.user} characters={this.state.characters}
+            <Route path="/profile/:id" component={(routerProps)=>
+              <PlayerProfile //{...routerProps}
+                             user={this.state.user} userId={this.state.userId}
                              addCharacter={this.addCharacter} updateCharacter={this.updateCharacter} deleteCharacter={this.deleteCharacter}
                              logout={this.logout} updateProfile ={this.updateProfile} deleteProfile={this.deleteProfile}
               />

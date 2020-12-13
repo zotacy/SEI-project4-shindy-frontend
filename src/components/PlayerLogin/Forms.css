@@ -16,11 +16,22 @@ input {
     width:283px;
     margin-left:5px;
     border-radius: 5px;
+    padding-left: 5px; 
+}
+#email{
+    width:284px;
+    margin-left:5px;
+    border-radius: 5px;
     padding-left: 5px;
-    
 }
 #username{
     width:240px;
+    margin-left:5px;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+#password{
+    width:246px;
     margin-left:5px;
     border-radius: 5px;
     padding-left: 5px;
