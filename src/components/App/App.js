@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import axios from 'axios'
-import {Route, Switch, Redirect} from 'react-router-dom';
+import axios from 'axios';
+// import bootstrap from 'bootstrap';
+import {Route, Switch, Link, Redirect} from 'react-router-dom';
 import './App.css';
 import Homepage from '../Homepage/Homepage'
 import PlayerProfile from '../PlayerProfile/PlayerProfile';
@@ -113,18 +114,16 @@ class App extends Component {
   render(){
     // console.log(this.state)
     return (
+      <body>
       <div className="App">
       {/* Header */}
         <header className="header">
-          <Aheader userId={this.state.userId}/>
+        <Aheader {...this.state}{...this.props} logout={this.logout}/>
         </header>
       {/* Main Body */}
-        <main className="App-main"> 
-          <Switch>
-            <Route exact path="/" component={()=>
-              <Homepage user={this.state.user}/>
-            }/>
-            <Route path="/gamescreen" component={(routerProps)=><GameScreen/>}/>
+        <main className="main"> 
+        <Switch>
+            <Route exact path="/" component={(routerProps)=><GameScreen/>}/>
             <Route path="/login" component={(routerProps)=>
               <Login {...routerProps} userId={this.state.userId} login={this.login}/>
               // this.state.loggedIn ? <Redirect to={`/profile/${this.state.userId}`}/>
@@ -132,7 +131,7 @@ class App extends Component {
             <Route path="/signup" component={(routerProps)=>
               <Signup {...routerProps} user={this.state.user} signup={this.signup}/>}/>
             <Route path="/profile/:id" component={(routerProps)=>
-              <PlayerProfile //{...routerProps}
+              <PlayerProfile {...routerProps}
                              user={this.state.user} userId={this.state.userId}
                              addCharacter={this.addCharacter} updateCharacter={this.updateCharacter} deleteCharacter={this.deleteCharacter}
                              logout={this.logout} updateProfile ={this.updateProfile} deleteProfile={this.deleteProfile}
@@ -142,9 +141,10 @@ class App extends Component {
         </main>
       {/* Footer */}
         <footer className="footer">
-          <Afooter/>
+          <Afooter/> 
         </footer>
       </div>
+      </body>
     );
   }
 }

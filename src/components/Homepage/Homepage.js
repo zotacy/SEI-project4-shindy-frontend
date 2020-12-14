@@ -7,7 +7,7 @@ class HomePage extends Component{
         console.log(this.props)
 
         return(
-            <main className="App-main">
+            <main className="main">
             <h1>Homepage</h1>
                 <Link to="/login"><button>Login</button></Link>
                 <Link to="/signup"><button>Signup</button></Link>                      

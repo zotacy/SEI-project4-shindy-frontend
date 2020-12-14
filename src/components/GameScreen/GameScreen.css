@@ -1,21 +1,25 @@
 main{
     margin: auto;
-    margin-top:8%;
+    height:100%;
 }
 h2{
+    font-size:3vw;
     margin: 5px auto;
     align-self: left;
     float: left;
 }
 
 #player1{
-    background-color: palevioletred;
+    background-color: paleturquoise;
 }
 
 #playerC{
     background-color: palegreen;
 }
-
+#play{
+    cursor:pointer;
+    width:min-content;
+}
 /*----------Player Boxes----------*/
 .playerbox{
      border: 2px solid black;
@@ -33,7 +37,7 @@ h2{
 
 .hpBar{
     background-color: green;
-    width: 100%;
+    width: 99.3%;
     height: 3px;
     border: 1px solid black;
 }
@@ -42,12 +46,19 @@ h2{
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: .5fr .5fr;
+    grid-gap:3px;
     width: 75%;
     position: absolute;
     bottom: 10px;
     right: 5px;
 }
-
+button{
+    box-shadow: 1.5px 2px #888888;
+    border-radius:10px;
+    cursor:pointer;
+    text-decoration: none;
+    outline:none;
+}
 #attack{
     grid-row: 1;
     grid-column: 1;
@@ -65,3 +76,6 @@ h2{
     grid-row: 2;
     grid-column: 2;
 }
+
+
+  
