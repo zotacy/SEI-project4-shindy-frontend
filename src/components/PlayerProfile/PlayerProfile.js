@@ -3,18 +3,18 @@ import React, {Component} from 'react';
 import './PlayerProfile.css';
 
 class PlayerProfile extends Component{
-    constructor(props){
-        super(props)
-    //     this.state={
-    //         // username: this.props.user.username,
-    //         userId: this.props.user.id,
-    //         name: this.props.user.name,
-    //         email: this.props.user.email,
-    //         username: this.props.user.username,
-    //         password: this.props.user.password,
-    //         characters: this.props.user.characters,
-    //     }
-    }
+    // constructor(props){
+    //     super(props)
+    // //     this.state={
+    // //         // username: this.props.user.username,
+    // //         userId: this.props.user.id,
+    // //         name: this.props.user.name,
+    // //         email: this.props.user.email,
+    // //         username: this.props.user.username,
+    // //         password: this.props.user.password,
+    // //         characters: this.props.user.characters,
+    // //     }
+    // }
 
     render(){
         const playerDetails= this.props.user;

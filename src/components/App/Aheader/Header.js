@@ -4,7 +4,7 @@ import './Header.css'
 
 class Header extends Component{
     render(){
-        if (this.props.loggedIn==true) {
+        if (this.props.loggedIn === true) {
             return(
                 <header className="App-header">
                     <Link to ="/"><h1 id="header-link">Shindy</h1></Link>   

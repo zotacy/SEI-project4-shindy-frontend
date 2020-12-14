@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 // import bootstrap from 'bootstrap';
-import {Route, Switch, Link, Redirect} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import './App.css';
-import Homepage from '../Homepage/Homepage'
+// import Homepage from '../Homepage/Homepage'
 import PlayerProfile from '../PlayerProfile/PlayerProfile';
-import Aheader from '../Aheader/Header';
+import Aheader from './Aheader/Header';
 import Afooter from '../Afooter/Footer';
 import Login from '../PlayerLogin/Login';
 import Signup from '../PlayerLogin/Signup';
@@ -41,7 +41,8 @@ class App extends Component {
       username: event.target.name.value,
       password: event.target.password.value,
     })
-    this.getProfile()
+    this.login()
+    // this.getProfile()
   }
   login= async(event)=>{
     event.preventDefault()
@@ -115,7 +116,7 @@ class App extends Component {
   render(){
     // console.log(this.state)
     return (
-      <body>
+      <div className="body">
       <div className="App">
       {/* Header */}
         <header className="header">
@@ -124,7 +125,7 @@ class App extends Component {
       {/* Main Body */}
         <main className="main"> 
         <Switch>
-            <Route exact path="/" component={(routerProps)=><GameScreen/>}/>
+            <Route exact path="/" component={(routerProps)=><GameScreen {...routerProps}/>}/>
             <Route path="/login" component={(routerProps)=>
               <Login {...routerProps} userId={this.state.userId} login={this.login}/>
               // this.state.loggedIn ? <Redirect to={`/profile/${this.state.userId}`}/>
@@ -146,7 +147,7 @@ class App extends Component {
           <Afooter/> 
         </footer>
       </div>
-      </body>
+      </div>
     );
   }
 }

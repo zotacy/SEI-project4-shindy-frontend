@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import './Forms.css';
 
 class Signup extends Component{
-  constructor(){
-    super()
-  }
-  
   render(){  
       return(
         <div>
