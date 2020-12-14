@@ -25,10 +25,12 @@ class App extends Component {
   // Methods: Get Profile
   componentDidMount=()=>{
     this.getProfile()
+    localStorage.setItem('userInfo', this.state.user);
   }
   getProfile= async()=>{
     const response = await axios(`${shindyBackendUrl}/users/profile/${this.state.userId}`)
     this.setState({user:response.data.user})
+    localStorage.getItem('userInfo');
   }
   // Methods: PLayer Login/Sign-up
   signup= async(event)=>{
@@ -57,11 +59,10 @@ class App extends Component {
   // Methods: User Profile
   logout=(event)=>{
     event.preventDefault()
-
     this.setState({
       loggedIn: false
     })
-    this.getProfile()
+    // localStorage.clear()
   }
   updateProfile = async(event)=>{
     event.preventDefault()
@@ -130,9 +131,10 @@ class App extends Component {
             }/>
             <Route path="/signup" component={(routerProps)=>
               <Signup {...routerProps} user={this.state.user} signup={this.signup}/>}/>
+            {/* In sign-up route use create character to build "Shindy Knight" for new profiles */}
             <Route path="/profile/:id" component={(routerProps)=>
-              <PlayerProfile {...routerProps}
-                             user={this.state.user} userId={this.state.userId}
+              <PlayerProfile {...routerProps} {...this.state}
+                            //  user={this.state.user} userId={this.state.userId}
                              addCharacter={this.addCharacter} updateCharacter={this.updateCharacter} deleteCharacter={this.deleteCharacter}
                              logout={this.logout} updateProfile ={this.updateProfile} deleteProfile={this.deleteProfile}
               />

@@ -22,8 +22,8 @@ class PlayerProfile extends Component{
         console.log(playerDetails.Characters)
         let characters= playerDetails.Characters.map((character,index)=>{
             return(
-                <div className="characterInfo">
-                    <div key={index}>
+                <div className="characterInfo" key={index}>
+                    <div>
                         <p id="charName">"{character.name}"</p>
                         <p id="hpStat">hp: {character.hp}</p>
                         <p id="atkStat">attack: {character.attack}</p>
@@ -33,7 +33,6 @@ class PlayerProfile extends Component{
                 </div>
             )
         })
-        console.log(characters)
         
         return(
             <main className="profileBlock">
@@ -46,10 +45,10 @@ class PlayerProfile extends Component{
                     <input id='username' type="text" name="username" placeholder={playerDetails.username} /><br/>
                     <input id='password' type="password" name="password" placeholder='Update Password'/><br/>
                     <br/>
-                    <input type="submit" value="Update Profile" />
+                    <input type="submit" value="Update Profile" id="update"/>
                 </form>
                 <form onSubmit={this.props.deleteProfile}>
-                    <input type="submit" value="Delete Profile" />
+                    <input type="submit" value="Delete Profile" id="delete"/>
                 </form>
 
                 </div>

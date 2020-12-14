@@ -11,8 +11,8 @@ class Login extends Component{
                 <h1>Login</h1>
                 <form onSubmit={this.props.login}>
                     <input type="text" name="username" placeholder="Username"/><br/>
-                    <input type="password" name="password" placeholder="*******"/><br/>
-                
+                    <input type="text" name="password" placeholder="*******"/><br/> 
+                        {/* Error message when this is type=password */}
                     <input type="hidden" name="loggedIn" value="true"/><br/>
                     <input id="submit" type="submit" value="Login"/>
                 </form>
