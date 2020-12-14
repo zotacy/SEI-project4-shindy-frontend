@@ -9,7 +9,7 @@ class GameLogic extends Component{
         let counter = 0;
         
         //Cell Array, addEventListeners & cellClick function
-        function cellClick(){
+        turnLogic=()=>{
             if (turn == 'comp' && this.classList.contains('clicked') == false){
                 this.classList.add('clicked')
                 moves[this.id] = turn;
@@ -25,8 +25,16 @@ class GameLogic extends Component{
             };
         };
 
-        function winLogic(){
-            if (
+        winLogic=()=>{
+            if (this.props.player.hp === 0){
+                alert("You won")
+                // this.props.endGame()
+            } else if (this.props.computer.hp === 0){
+                alert("You have been defeated")
+                // this.props.endGame()
+            } else {
+                // this.props.nextTurn()
+            }
         };
     }
 }

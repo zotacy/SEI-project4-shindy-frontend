@@ -20,6 +20,10 @@ h2{
     cursor:pointer;
     width:min-content;
 }
+div[disabled]{
+  pointer-events: none;
+  opacity: 0.7;
+}
 /*----------Player Boxes----------*/
 .playerbox{
      border: 2px solid black;
