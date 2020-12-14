@@ -1,23 +1,29 @@
-.profile{
+.profileBlock{
   display:flex;
-  flex-direction:column;
 }
 .playerInfo{
   display:flex;
   flex-direction: column;
+  justify-content:left;
   color:white;
   background-color:grey;
   border:2px solid blue;
   width: max-content;
+  margin:10px;
   padding: 5px;
 }
+h1{
+  margin-bottom:0;
+}
 /* Characters & Character block/card */
-.characters{
-  /* display:flex; */
+.charactersBlock{
   color:white;
   background-color:grey;
   border:2px solid white;
-  padding-top:10px;
+  height:max-content;
+}
+.characters{
+  display:flex;
 }
 
 .characterInfo{
@@ -32,6 +38,6 @@
 }
 #charName{
   font-style:bold;
-  font-size: 4vh;
+  font-size: 4wh;
   text-decoration: underline;
 }
