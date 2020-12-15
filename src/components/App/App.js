@@ -18,6 +18,7 @@ class App extends Component {
     super(props)
     this.state ={
       user:{},
+      newCharacter:{},
       userId: null,
       loggedIn:false
     }
@@ -93,31 +94,36 @@ class App extends Component {
   // Methods: User Characters (Add,Update,Delete)
   addCharacter = async(event)=>{ //add event because it is connected to a form
       event.preventDefault()
-      await axios.post(`${shindyBackendUrl}/characters`,{
+      let response= await axios.post(`${shindyBackendUrl}/chars`,{
         name: event.target.name.value,
         hp: event.target.hp.value,
         attack: event.target.attack.value,
         defense: event.target.defense.value,
         recover: event.target.recover.value,
         spd: event.target.spd.value,
-        userId: event.target.userId.value
+        userId: event.target.userId.value,
+        // characterId: event.target.userId.value
       })
-      this.getCharacters()
+      console.log("clicked")
+      console.log(response.data.newCharacter)
+      this.setState({newCharacter:response.data.newCharacter})
+      console.log("character added")
+      // this.getCharacters()
   }
   updateCharacter = async(event)=>{
       event.preventDefault()
       let characterId = event.target.characterId.value
-      await axios.put(`${shindyBackendUrl}/characters/${characterId}`,{
+      await axios.put(`${shindyBackendUrl}/chars/${characterId}`,{
           name: event.target.name.value,
           characterId: characterId
       })
-      this.getCharacters()
+      // this.getCharacters()
   }
   deleteCharacter = async(event)=>{
       event.preventDefault()
       let characterId = event.target.id
-      await axios.delete(`${shindyBackendUrl}/characters/${characterId}`)
-      this.getCharacters()
+      await axios.delete(`${shindyBackendUrl}/chars/${characterId}`)
+      // this.getCharacters()
   }
 
   // Render Pages

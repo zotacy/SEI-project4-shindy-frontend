@@ -10,6 +10,8 @@ class PlayerProfile extends Component{
             email: '',
             username: '',
             password: '',
+            show:false,
+            newCharacter:{}
         }
     }
     handleChange=(event)=>{
@@ -17,6 +19,10 @@ class PlayerProfile extends Component{
         this.setState({
           [event.target.name]:event.target.value
         })
+    }
+    toggleShow=()=>{
+        this.setState({show: !this.state.show})
+
     }
     render(){
         const playerDetails= this.props.user;
@@ -41,7 +47,7 @@ class PlayerProfile extends Component{
               <div className="playerInfo">
                 <h1>{playerDetails.username}</h1>
                 <form onSubmit={this.props.updateProfile}>
-                    <input id='userId' type="hidden" name="userId" value={playerDetails.userId} /><br/>
+                    <input id='userId' type="hidden" name="userId" value={playerDetails.id} /><br/>
                     <input id='name' type="text" name="name" value={this.state.name||playerDetails.name} onChange={this.handleChange}/><br/>
                     <input id='email' type="text" name="email" value={this.state.email||playerDetails.email} onChange={this.handleChange}/><br/>
                     <input id='username' type="text" name="username" value={this.state.username||playerDetails.username} onChange={this.handleChange}/><br/>
@@ -56,6 +62,22 @@ class PlayerProfile extends Component{
                 </div>
                 <div className="charactersBlock">
                     <h1>Player Characters</h1>
+                    <div className="addCharacter">
+                    <button onClick={this.toggleShow} id="toggle">Add Character</button> 
+                    {this.state.show ? 
+                        <form onSubmit={this.props.addCharacter} id="addCharForm">
+                            <input type="text" name="name" placeholder="Character Name/Title"/><br/>
+                            <input type="text" name="hp" placeholder="Max Hp"/><br/>
+                            <input type="text" name="attack" placeholder="Atk Stat"/><br/>
+                            <input type="text" name="defense" placeholder="Defense Stat"/><br/>
+                            <input type="text" name="recover" placeholder="Recover Stat"/><br/>
+                            <input type="text" name="spd" placeholder='spd (enter 1)'/><br/>
+                            <input type="hidden" name="userId" value={playerDetails.id}/><br/> 
+                            <input type="submit" id="submit" placeholder="Add Character" />
+                        </form>
+                        : null
+                    }
+                    </div>
                     <div className="characters">
                         {characters}
                     </div>
