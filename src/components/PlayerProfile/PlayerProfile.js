@@ -3,19 +3,21 @@ import React, {Component} from 'react';
 import './PlayerProfile.css';
 
 class PlayerProfile extends Component{
-    // constructor(props){
-    //     super(props)
-    // //     this.state={
-    // //         // username: this.props.user.username,
-    // //         userId: this.props.user.id,
-    // //         name: this.props.user.name,
-    // //         email: this.props.user.email,
-    // //         username: this.props.user.username,
-    // //         password: this.props.user.password,
-    // //         characters: this.props.user.characters,
-    // //     }
-    // }
-
+    constructor(props){
+        super(props)
+        this.state={
+            name: '',
+            email: '',
+            username: '',
+            password: '',
+        }
+    }
+    handleChange=(event)=>{
+        event.preventDefault()
+        this.setState({
+          [event.target.name]:event.target.value
+        })
+    }
     render(){
         const playerDetails= this.props.user;
         console.log(playerDetails)
@@ -40,10 +42,10 @@ class PlayerProfile extends Component{
                 <h1>{playerDetails.username}</h1>
                 <form onSubmit={this.props.updateProfile}>
                     <input id='userId' type="hidden" name="userId" value={playerDetails.userId} /><br/>
-                    <input id='name' type="text" name="name" placeholder={playerDetails.name} /><br/>
-                    <input id='email' type="text" name="email" placeholder={playerDetails.email} /><br/>
-                    <input id='username' type="text" name="username" placeholder={playerDetails.username} /><br/>
-                    <input id='password' type="password" name="password" placeholder='Update Password'/><br/>
+                    <input id='name' type="text" name="name" value={this.state.name||playerDetails.name} onChange={this.handleChange}/><br/>
+                    <input id='email' type="text" name="email" value={this.state.email||playerDetails.email} onChange={this.handleChange}/><br/>
+                    <input id='username' type="text" name="username" value={this.state.username||playerDetails.username} onChange={this.handleChange}/><br/>
+                    <input id='password' type="password" name="password" value={this.state.password||playerDetails.password} onChange={this.handleChange}/><br/>
                     <br/>
                     <input type="submit" value="Update Profile" id="update"/>
                 </form>

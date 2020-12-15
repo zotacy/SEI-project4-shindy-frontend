@@ -22,7 +22,7 @@ class App extends Component {
       loggedIn:false
     }
   }
-  // Methods: Get Profile
+  // Methods: Get/Mount Profile
   componentDidMount=()=>{
     this.getProfile()
     localStorage.setItem('userInfo', this.state.user);
@@ -30,9 +30,9 @@ class App extends Component {
   getProfile= async()=>{
     const response = await axios(`${shindyBackendUrl}/users/profile/${this.state.userId}`)
     this.setState({user:response.data.user})
-    localStorage.getItem('userInfo');
+    // localStorage.getItem('userInfo');
   }
-  // Methods: PLayer Login/Sign-up
+  // Methods: PLayer Authentication (Login, Signup, Logout)
   signup= async(event)=>{
     event.preventDefault()
     await axios.post(`${shindyBackendUrl}/auth/signup`,{
@@ -57,34 +57,36 @@ class App extends Component {
     })
     this.getProfile()
   }
-  // Methods: User Profile
-  logout=(event)=>{
+  logout= async(event)=>{
     event.preventDefault()
+    await axios.get(`${shindyBackendUrl}/auth/logout`)
     this.setState({
-      loggedIn: false
-    })
-    return <Redirect to='/'/>
+          loggedIn: false
+        })
+    // return <Redirect to='/'/>
     // localStorage.clear()
   }
+  // Methods: User Profile (Update, Delete)
   updateProfile = async(event)=>{
     event.preventDefault()
-    let userId = event.target.userId.value
-    await axios.put(`${shindyBackendUrl}/users/${userId}`,{
+    let userId = this.state.userId
+    let response = await axios.put(`${shindyBackendUrl}/users/${userId}`,{
       name: event.target.name.value,
       email: event.target.email.value,
       username: event.target.username.value,
       password: event.target.password.value,
       userId: userId
     })
+    console.log(userId, response)
     this.getProfile()
   }
   deleteProfile = async(event)=>{
       event.preventDefault()
-      let userId = event.target.id
+      let userId = this.state.userId 
       await axios.delete(`${shindyBackendUrl}/users/${userId}`)
       this.getProfile()
   }
-  // Methods: User Characters
+  // Methods: User Characters (Add,Update,Delete)
   addCharacter = async(event)=>{ //add event because it is connected to a form
       event.preventDefault()
       await axios.post(`${shindyBackendUrl}/characters`,{
@@ -139,8 +141,8 @@ class App extends Component {
             {/* In sign-up route use create character to build "Shindy Knight" for new profiles */}
             <Route path="/profile/:id" component={(routerProps)=>
               <PlayerProfile {...routerProps} {...this.state}
-                             addCharacter={this.addCharacter} updateCharacter={this.updateCharacter} deleteCharacter={this.deleteCharacter}
-                             logout={this.logout} updateProfile ={this.updateProfile} deleteProfile={this.deleteProfile}
+                addCharacter={this.addCharacter} updateCharacter={this.updateCharacter} deleteCharacter={this.deleteCharacter}
+                logout={this.logout} updateProfile ={this.updateProfile} deleteProfile={this.deleteProfile}
               />
             }/>
           </Switch>
