@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 // import bootstrap from 'bootstrap';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import './App.css';
 // import Homepage from '../Homepage/Homepage'
 import PlayerProfile from '../PlayerProfile/PlayerProfile';
@@ -37,12 +37,12 @@ class App extends Component {
     event.preventDefault()
     await axios.post(`${shindyBackendUrl}/auth/signup`,{
       name: event.target.name.value,
-      email: event.target.name.value,
-      username: event.target.name.value,
+      email: event.target.email.value,
+      username: event.target.username.value,
       password: event.target.password.value,
     })
-    this.login()
-    // this.getProfile()
+    // this.login()
+    this.getProfile()
   }
   login= async(event)=>{
     event.preventDefault()
@@ -63,6 +63,7 @@ class App extends Component {
     this.setState({
       loggedIn: false
     })
+    return <Redirect to='/'/>
     // localStorage.clear()
   }
   updateProfile = async(event)=>{
@@ -70,6 +71,7 @@ class App extends Component {
     let userId = event.target.userId.value
     await axios.put(`${shindyBackendUrl}/users/${userId}`,{
       name: event.target.name.value,
+      email: event.target.email.value,
       username: event.target.username.value,
       password: event.target.password.value,
       userId: userId
@@ -125,17 +127,18 @@ class App extends Component {
       {/* Main Body */}
         <main className="main"> 
         <Switch>
-            <Route exact path="/" component={(routerProps)=><GameScreen {...routerProps}/>}/>
+            <Route exact path="/" component={(routerProps)=>
+              <GameScreen {...routerProps}/>
+            }/>
             <Route path="/login" component={(routerProps)=>
               <Login {...routerProps} userId={this.state.userId} login={this.login}/>
               // this.state.loggedIn ? <Redirect to={`/profile/${this.state.userId}`}/>
             }/>
             <Route path="/signup" component={(routerProps)=>
-              <Signup {...routerProps} user={this.state.user} signup={this.signup}/>}/>
+              <Signup {...routerProps} user={this.state.user} userId={this.state.userId} signup={this.signup}/>}/>
             {/* In sign-up route use create character to build "Shindy Knight" for new profiles */}
             <Route path="/profile/:id" component={(routerProps)=>
               <PlayerProfile {...routerProps} {...this.state}
-                            //  user={this.state.user} userId={this.state.userId}
                              addCharacter={this.addCharacter} updateCharacter={this.updateCharacter} deleteCharacter={this.deleteCharacter}
                              logout={this.logout} updateProfile ={this.updateProfile} deleteProfile={this.deleteProfile}
               />

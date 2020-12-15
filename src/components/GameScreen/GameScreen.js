@@ -40,6 +40,7 @@ class GameScreen extends Component{
         let player= this.state.player;
         let computer= this.state.computer; 
         let moves = this.state.moves;
+        this.setState({disabled: false})
         // First Turn
         if (player.spd === computer.spd && moves.length==0){
             console.log('speeds match, moves 0')
@@ -150,8 +151,10 @@ class GameScreen extends Component{
     winLogic=()=>{
         if (this.state.player.hp == 0){
             alert("You have been defeated")
+            this.setState({disabled: true})
         } else if (this.state.computer.hp == 0){
             alert("You are Victorious!")
+            this.setState({disabled: true})
         } else {
             this.nextTurn()
         }
@@ -189,12 +192,12 @@ class GameScreen extends Component{
                         <h2>{computer.title}</h2>
                         <div className="hpBar" hp={this.state.computer.hp} maxhp={this.state.computer.maxHp}></div>
                     </div>
-                    <div className="actionbox" >
+                    {/* <div className="actionbox" >
                         <button className="action" id="attack" >Attack!</button>
                         <button className="action" id="defend" >Block</button>
                         <button className="action" id="recover" >Recover</button>
                         <button className="action" id="trick" >Trickery</button>
-                    </div>
+                    </div> */}
                 </div>
             </main>
         )
