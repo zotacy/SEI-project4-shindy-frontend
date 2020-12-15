@@ -35,13 +35,17 @@ class App extends Component {
   // Methods: PLayer Authentication (Login, Signup, Logout)
   signup= async(event)=>{
     event.preventDefault()
-    await axios.post(`${shindyBackendUrl}/auth/signup`,{
+    let response = await axios.post(`${shindyBackendUrl}/auth/signup`,{
       name: event.target.name.value,
       email: event.target.email.value,
       username: event.target.username.value,
       password: event.target.password.value,
     })
-    // this.login()
+    console.log(response.data)
+    this.setState({
+      userId: response.data.userId,
+      loggedIn: true
+    })
     this.getProfile()
   }
   login= async(event)=>{
@@ -59,12 +63,12 @@ class App extends Component {
   }
   logout= async(event)=>{
     event.preventDefault()
-    await axios.get(`${shindyBackendUrl}/auth/logout`)
+    let response= await axios.get(`${shindyBackendUrl}/auth/logout`)
     this.setState({
-          loggedIn: false
-        })
-    // return <Redirect to='/'/>
-    // localStorage.clear()
+      // user:{},
+      // userId: null,
+      loggedIn:false
+    })
   }
   // Methods: User Profile (Update, Delete)
   updateProfile = async(event)=>{
@@ -137,7 +141,7 @@ class App extends Component {
               // this.state.loggedIn ? <Redirect to={`/profile/${this.state.userId}`}/>
             }/>
             <Route path="/signup" component={(routerProps)=>
-              <Signup {...routerProps} user={this.state.user} userId={this.state.userId} signup={this.signup}/>}/>
+              <Signup {...routerProps} user={this.state.user} userId={this.state.userId} signup={this.signup} login={this.login}/>}/>
             {/* In sign-up route use create character to build "Shindy Knight" for new profiles */}
             <Route path="/profile/:id" component={(routerProps)=>
               <PlayerProfile {...routerProps} {...this.state}
