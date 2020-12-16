@@ -81,7 +81,6 @@ class GameScreen extends Component{
             this.setState({computer: compObj});
 
             let action =`You dealt ${playerAtk} damage`
-            console.log(action)
             this.setState({moveHistory: [...this.state.moveHistory, action]})
             this.winLogic()
         } else if(this.state.playerTurn === false){
@@ -91,7 +90,6 @@ class GameScreen extends Component{
             this.setState({player: playerObj});
 
             let action=`You took ${compAtk} damage`
-            console.log(action)
             this.setState({moveHistory: [...this.state.moveHistory, action]})
             this.winLogic()
         }
@@ -108,7 +106,6 @@ class GameScreen extends Component{
                 playerObj.defense = playerObj.defense + buffDef
             }
             let action=`You've prepared for an attack. (Def + ${buffDef})`
-            console.log(action)
             this.setState({moveHistory: [...this.state.moveHistory, action]})
             this.winLogic()
         } else {
@@ -135,7 +132,6 @@ class GameScreen extends Component{
             this.setState({player: playerObj});
 
             let action=`You recovered ${this.state.player.recover} hp`
-            console.log(action)
             this.setState({moveHistory: [...this.state.moveHistory, action]})
             this.winLogic()
         } else if (this.state.playerTurn === false){
@@ -144,29 +140,35 @@ class GameScreen extends Component{
             this.setState({computer: compObj});
 
             let action =`Your opponent is looking healthier`
-            console.log(action)
             this.setState({moveHistory: [...this.state.moveHistory, action]})
             this.winLogic()
         }
     }
     trickery=()=>{ //Adds a random buff to one of the players stats
         const trickStats= ['hp','attack','defense','recover','spd'];
-        let trickStat= trickStats[Math.floor(Math.random()*trickStats.length)]
+        let trickStat= trickStats[Math.floor(Math.random()*trickStats.length)];
+        let trickVal= 7;
         if (this.state.playerTurn === true){
-            let action=`You performed some trickery... ${trickStat} increased`
-            console.log(action)
+            let playerObj= this.state.player
+            playerObj[`${trickStat}`] = playerObj[`${trickStat}`] + trickVal
+            this.setState({player: playerObj});
+
+            let action=`You performed some trickery... ${trickStat} increased by ${trickVal}`
             this.setState({moveHistory: [...this.state.moveHistory, action]})
             this.winLogic()
         } else {
+            let compObj= this.state.computer
+            compObj[`${trickStat}`] = compObj[`${trickStat}`] + trickVal
+            this.setState({computer: compObj});
+
             let action=`Your opponent is getting into some mischief`
-            console.log(action)
             this.setState({moveHistory: [...this.state.moveHistory, action]})
             this.winLogic()
         }
     }
     // Turn & Win Logic
     nextTurn=()=>{ 
-        console.log(this.state.playerTurn)
+        // console.log(this.state.playerTurn)
         if (this.state.playerTurn === false){
             // this.setState({playerTurn: !this.state.playerTurn})
             // let compActions = [this.attack,this.block,this.recover,this.trickery]
@@ -196,6 +198,8 @@ class GameScreen extends Component{
         let computer= this.state.computer;
         console.log(this.state)
         let moveHistory= this.state.moveHistory.map((move,index)=>{
+            console.log(move)
+            // use to match with color with player? (this.state.playerTurn===true)
             if (index%2===0){
                 return(
                     <p key={index} id="even">{move}</p>
@@ -207,13 +211,13 @@ class GameScreen extends Component{
             }
         })
         return(
-            <main classname="gameMain">
+            <main className="gameMain">
             <div className="gameScreen">
                 {/* <!-- Player --> */}
                 <div className="characterbox" id="player1">
                     <div className="char" >
                         <h2>{player.title}</h2>
-                        <div className="hpBar" hp={this.state.player.hp} maxhp={this.state.player.maxHp}></div>
+                        <progress id="hpBar" value={this.state.player.hp} max='100'></progress>
                     </div>
                     {this.state.playerTurn ? 
                         <div className="actionbox">
@@ -233,7 +237,7 @@ class GameScreen extends Component{
                 <div className="characterbox" id="playerC">
                     <div className="char" >
                         <h2>{computer.title}</h2>
-                        <div className="hpBar" hp={this.state.computer.hp} maxhp={this.state.computer.maxHp}></div>
+                        <progress id="hpBar" value={this.state.computer.hp} max='100'></progress>
                     </div>
                     {this.state.playerTurn ? this.state.disabled :
                         <div className="actionbox">

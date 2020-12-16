@@ -1,5 +1,6 @@
 .profileBlock{
-  display:flex;
+  /* display:flex;
+  flex-direction: space-between; */
 }
 .playerInfo{
   display:flex;
@@ -9,8 +10,10 @@
   background-color:grey;
   border:2px solid white;
   width: max-content;
-  margin:10px;
-  margin-top:0;
+  height:max-content;
+  margin: 10px;
+  /* margin:10px;
+  margin-top:0; */
   padding: 0px 5px 5px 5px;
 }
 h1{
@@ -28,12 +31,14 @@ h1{
   background-color:grey;
   border:2px solid white;
   height:max-content;
-  width:max-content;
-  margin:0 auto;
+  /* width:max-content; */
+  max-width:400px;
+  margin: 10px;
   padding: 0 5px 0 5px;
 }
 .characters{
   display:flex;
+  flex-wrap:wrap;
 }
 
 .characterInfo{
@@ -43,7 +48,7 @@ h1{
   background-color:whitesmoke;
   color:black;
   margin:10px;
-  padding:0px 10px;
+  padding:5px;
   line-height: 2vh;
 }
 #charName{

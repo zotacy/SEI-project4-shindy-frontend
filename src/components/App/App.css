@@ -17,6 +17,7 @@
 .main {
   grid-area: main;
   justify-content:center;
+  text-align:center;
   background-color: black;
   width:100%;
 }
