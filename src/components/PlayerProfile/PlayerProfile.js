@@ -11,7 +11,7 @@ class PlayerProfile extends Component{
             username: '',
             password: '',
             show:false,
-            newCharacter:{}
+            primaryCharacter:{}
         }
     }
     handleChange=(event)=>{

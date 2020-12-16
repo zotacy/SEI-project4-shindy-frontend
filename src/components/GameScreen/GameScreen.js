@@ -73,7 +73,7 @@ class GameScreen extends Component{
         console.log(moveHistory)
     }
     // Game Methods
-    attack=()=>{
+    attack=()=>{ //Deals damage equilavent to attack stat
         if (this.state.playerTurn === true){
             let compObj= this.state.computer
             let playerAtk= (this.state.player.attack-this.state.computer.defense)
@@ -96,20 +96,39 @@ class GameScreen extends Component{
             this.winLogic()
         }
     }
-    block=()=>{
+    block=()=>{ //Raises defense stat (turn-based version)
+        let buffDef=''
         if (this.state.playerTurn === true){
-            let action=`You've prepared for an attack`
+            let playerObj= this.state.player
+            if (playerObj.defense < 15){
+                buffDef= 5
+                playerObj.defense = playerObj.defense + buffDef
+            } else {
+                buffDef= 1
+                playerObj.defense = playerObj.defense + buffDef
+            }
+            let action=`You've prepared for an attack. (Def + ${buffDef})`
             console.log(action)
             this.setState({moveHistory: [...this.state.moveHistory, action]})
             this.winLogic()
         } else {
-            let action=`Opponent blocked some of your damage`
+            let compObj= this.state.computer
+            let action=''
+            if (compObj.defense < 15){
+                buffDef= 5
+                compObj.defense = compObj.defense + buffDef
+                action=`Opponent added armor`
+            } else {
+                buffDef= 1
+                compObj.defense = compObj.defense + buffDef
+                action=`Opponent repositioned their armor`
+            }
             console.log(action)
             this.setState({moveHistory: [...this.state.moveHistory, action]})
             this.winLogic()
         }
     }
-    recover=()=>{
+    recover=()=>{ //Recovers Hp equivalent to hp stat
         if(this.state.playerTurn === true){
             let playerObj= this.state.player
             playerObj.hp = playerObj.hp + this.state.player.recover
@@ -130,7 +149,7 @@ class GameScreen extends Component{
             this.winLogic()
         }
     }
-    trickery=()=>{
+    trickery=()=>{ //Adds a random buff to one of the players stats
         const trickStats= ['hp','attack','defense','recover','spd'];
         let trickStat= trickStats[Math.floor(Math.random()*trickStats.length)]
         if (this.state.playerTurn === true){
@@ -176,8 +195,20 @@ class GameScreen extends Component{
         let player= this.state.player;
         let computer= this.state.computer;
         console.log(this.state)
+        let moveHistory= this.state.moveHistory.map((move,index)=>{
+            if (index%2===0){
+                return(
+                    <p key={index} id="even">{move}</p>
+                )
+            } else {
+                return(
+                    <p key={index} id="odd">{move}</p>
+                )
+            }
+        })
         return(
-            <main>
+            <main classname="gameMain">
+            <div className="gameScreen">
                 {/* <!-- Player --> */}
                 <div className="characterbox" id="player1">
                     <div className="char" >
@@ -213,6 +244,13 @@ class GameScreen extends Component{
                         </div>
                     }
                 </div>
+            </div>
+            <div className="mhContainer">
+                <h2 id="title">Move History</h2><br/>
+                <div className="moveHistory">
+                    {moveHistory}
+                </div>
+            </div>
             </main>
         )
     }

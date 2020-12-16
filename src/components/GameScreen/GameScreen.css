@@ -1,20 +1,58 @@
 main{
+    display:flex;
     margin: auto;
     height:100%;
+    /* padding: 10px 0 10px 0; */
+}
+/* Game Screen */
+.gameScreen{
+    height: max-content;
+    width:max-content;
+    border:2px solid grey;
+    margin:10px;
+    min-width: 400px;
+}
+
+/* Move History */
+.mhContainer{
+    display:grid;
+    grid-template-columns: 200px;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 'title' 'body';
+    text-align:center;
+    background-color:whitesmoke;
+    color: black;
+    border:2px solid grey;
+    margin:10px;
+    min-height:100px;
+    max-height:400px;
+}
+.moveHistory{
+    grid-area: body;
+    text-align:left;
+    display:flex;
+    flex-direction:column-reverse;
+    justify-content:flex-end;
+    margin: 0 auto;
+    width:95%;
+    max-width: 198px;
+    overflow-y:scroll;
+}
+p{
+    margin-left:2px;
+    margin:0;
+}
+p#even{
+    color:darkslategrey;
+}
+#title{
+    grid-area: title;
+    text-decoration:underline;
 }
 h2{
-    font-size:3vw;
     margin: 5px auto;
     align-self: left;
     float: left;
-}
-
-#player1{
-    background-color: paleturquoise;
-}
-
-#playerC{
-    background-color: palegreen;
 }
 #play{
     cursor:pointer;
@@ -29,20 +67,24 @@ div[disabledC]{
     opacity: 0.7;
   }
 /*----------Player Boxes----------*/
+#player1{
+    background-color: paleturquoise;
+}
+#playerC{
+    background-color: palegreen;
+}
 .characterbox{
      border: 2px solid black;
      border-radius: 5px;
-     margin: 20px auto;
+     margin: 5px auto;
      padding: 10px 5px;
-     width: 80%;
+     width: 95%;
      height: 60px;
      position: relative;
 }
-
 .char{
     margin-bottom: 10px;
 }
-
 .hpBar{
     background-color: green;
     width: 99.3%;
@@ -55,7 +97,7 @@ div[disabledC]{
     grid-template-rows: 1fr 1fr;
     grid-template-columns: .5fr .5fr;
     grid-gap:3px;
-    width: 75%;
+    width: 66%;
     position: absolute;
     bottom: 10px;
     right: 5px;
@@ -66,12 +108,12 @@ button{
     cursor:pointer;
     text-decoration: none;
     outline:none;
+    transform: scale(.95);
 }
 #attack{
     grid-row: 1;
     grid-column: 1;
 }
-
 #defend{
     grid-row: 1;
     grid-column: 2;

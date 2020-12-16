@@ -5,7 +5,7 @@ import {Route, Switch} from 'react-router-dom';
 import './App.css';
 // import Homepage from '../Homepage/Homepage'
 import PlayerProfile from '../PlayerProfile/PlayerProfile';
-import Aheader from './Aheader/Header';
+import Aheader from '../Aheader/Header';
 import Afooter from '../Afooter/Footer';
 import Login from '../PlayerLogin/Login';
 import Signup from '../PlayerLogin/Signup';
@@ -130,7 +130,6 @@ class App extends Component {
   render(){
     // console.log(this.state)
     return (
-      <div className="body">
       <div className="App">
       {/* Header */}
         <header className="header">
@@ -161,7 +160,6 @@ class App extends Component {
         <footer className="footer">
           <Afooter/> 
         </footer>
-      </div>
       </div>
     );
   }
