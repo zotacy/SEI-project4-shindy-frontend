@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 // import bootstrap from 'bootstrap';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import './App.css';
 // import Homepage from '../Homepage/Homepage'
 import PlayerProfile from '../PlayerProfile/PlayerProfile';
@@ -18,7 +18,7 @@ class App extends Component {
     super(props)
     this.state ={
       user:{},
-      newCharacter:{},
+      primaryCharacter:{},
       userId: null,
       loggedIn:false
     }
@@ -70,6 +70,7 @@ class App extends Component {
       // userId: null,
       loggedIn:false
     })
+    return <Redirect to="/"/>
   }
   // Methods: User Profile (Update, Delete)
   updateProfile = async(event)=>{
@@ -86,44 +87,52 @@ class App extends Component {
     this.getProfile()
   }
   deleteProfile = async(event)=>{
-      event.preventDefault()
-      let userId = this.state.userId 
-      await axios.delete(`${shindyBackendUrl}/users/${userId}`)
-      this.getProfile()
+    event.preventDefault()
+    let userId = this.state.userId 
+    console.log(userId)
+    await axios.delete(`${shindyBackendUrl}/users/${userId}`)
+    this.getProfile()
   }
   // Methods: User Characters (Add,Update,Delete)
   addCharacter = async(event)=>{ //add event because it is connected to a form
-      event.preventDefault()
-      let response= await axios.post(`${shindyBackendUrl}/chars`,{
-        name: event.target.name.value,
+    event.preventDefault()
+    let response= await axios.post(`${shindyBackendUrl}/chars`,{
+      name: event.target.name.value,
+      hp: event.target.hp.value,
+      attack: event.target.attack.value,
+      defense: event.target.defense.value,
+      recover: event.target.recover.value,
+      spd: event.target.spd.value,
+      userId: event.target.userId.value,
+      // characterId: event.target.userId.value
+    })
+    console.log("clicked")
+    console.log(response.data.newCharacter)
+    this.setState({newCharacter:response.data.newCharacter})
+    console.log("character added")
+    this.getProfile()
+  }
+  updateCharacter = async(event)=>{
+    event.preventDefault()
+    let characterId = event.target.characterId.value
+    await axios.put(`${shindyBackendUrl}/chars/${characterId}`,{
+        // name: event.target.name.value,
         hp: event.target.hp.value,
         attack: event.target.attack.value,
         defense: event.target.defense.value,
         recover: event.target.recover.value,
         spd: event.target.spd.value,
-        userId: event.target.userId.value,
-        // characterId: event.target.userId.value
-      })
-      console.log("clicked")
-      console.log(response.data.newCharacter)
-      this.setState({newCharacter:response.data.newCharacter})
-      console.log("character added")
-      // this.getCharacters()
-  }
-  updateCharacter = async(event)=>{
-      event.preventDefault()
-      let characterId = event.target.characterId.value
-      await axios.put(`${shindyBackendUrl}/chars/${characterId}`,{
-          name: event.target.name.value,
-          characterId: characterId
-      })
-      // this.getCharacters()
+        // userId: event.target.userId.value,
+        characterId: characterId,
+    })
+    this.getProfile()
   }
   deleteCharacter = async(event)=>{
-      event.preventDefault()
-      let characterId = event.target.id
-      await axios.delete(`${shindyBackendUrl}/chars/${characterId}`)
-      // this.getCharacters()
+    event.preventDefault()
+    let characterId = event.target.id
+    console.log(characterId)
+    await axios.delete(`${shindyBackendUrl}/chars/${characterId}`)
+    this.getProfile()
   }
 
   // Render Pages

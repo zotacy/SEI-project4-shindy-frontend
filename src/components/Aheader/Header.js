@@ -7,7 +7,7 @@ class Header extends Component{
         event.preventDefault();
         await this.props.logout(event)
         // setTimeout(()=>{
-        //   this.props.history.push(`/login`)
+        //   this.props.history.push(`/`)
         // },500)
       }
     render(){

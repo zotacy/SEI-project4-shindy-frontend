@@ -1,7 +1,8 @@
-.profileBlock{
-  /* display:flex;
-  flex-direction: space-between; */
-}
+/* .profileBlock{
+  display:flex;
+  flex-direction: space-between;
+} */
+/*------------ Profile -----------*/
 .playerInfo{
   display:flex;
   flex-direction: column;
@@ -11,28 +12,31 @@
   border:2px solid white;
   width: max-content;
   height:max-content;
+  min-height:250px;
   margin: 10px;
   /* margin:10px;
   margin-top:0; */
-  padding: 0px 5px 5px 5px;
+  padding: 0px 5px 0px 5px;
 }
 h1{
   margin: 0 auto;
 }
-/* Characters & Character block/card */
-/* #addCharForm .hidden{ display:none; } */
+/*----------- Characters ----------*/
 #addCharForm{
   display:block;
   width:max-content;
-  border:2px solid white;
+  /* border:2px solid white; */
+  margin: 0 auto;
+  padding:3px;
 }
 .charactersBlock{
   color:white;
   background-color:grey;
   border:2px solid white;
   height:max-content;
+  min-height:250px;
   /* width:max-content; */
-  max-width:400px;
+  max-width:500px;
   margin: 10px;
   padding: 0 5px 0 5px;
 }
@@ -40,7 +44,6 @@ h1{
   display:flex;
   flex-wrap:wrap;
 }
-
 .characterInfo{
   width:max-content;
   border:2px solid black;
@@ -49,15 +52,22 @@ h1{
   color:black;
   margin:10px;
   padding:5px;
-  line-height: 2vh;
+  /* line-height: 2vh; */
+  text-align:left;
 }
 #charName{
-  font-style:bold;
-  font-size: 4wh;
+  /* text-align:center; */
+  font-size:100%;
+  font-weight:bold;
   text-decoration: underline;
+  /* margin-bottom: 5px; */
 }
-/* Buttons */
-#update,#delete{
+span{
+  font-weight:bold;
+  font-size:95%;
+}
+/*----------- Buttons ----------*/
+.button{
   transform:scale(.75);
   padding:2px 4px;
   box-shadow: 2px 2px black;
