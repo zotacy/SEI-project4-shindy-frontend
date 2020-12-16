@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 // import bootstrap from 'bootstrap';
-import {Route, Switch, Redirect} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import './App.css';
 // import Homepage from '../Homepage/Homepage'
 import PlayerProfile from '../PlayerProfile/PlayerProfile';
@@ -64,7 +64,7 @@ class App extends Component {
   }
   logout= async(event)=>{
     event.preventDefault()
-    let response= await axios.get(`${shindyBackendUrl}/auth/logout`)
+    await axios.get(`${shindyBackendUrl}/auth/logout`)
     this.setState({
       // user:{},
       // userId: null,
