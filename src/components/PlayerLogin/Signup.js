@@ -4,6 +4,7 @@ import './Forms.css';
 class Signup extends Component{
   handleSignup=async(event)=>{
     event.preventDefault();
+    console.log(event)
     await this.props.signup(event)
     await this.props.login(event)
     setTimeout(()=>{

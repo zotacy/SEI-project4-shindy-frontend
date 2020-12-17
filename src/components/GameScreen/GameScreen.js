@@ -35,16 +35,16 @@ class GameScreen extends Component{
             moveHistory:[],
             computerMoves:[],
             playerTurn: null,
-            disabled:false,
+            disabled:null,
         }
     }
     // Initialize Game
     playGame=()=>{
         alert("Battle Begin!")
         console.log("Battle Begin!")
+        this.resetStats()
         let player= this.state.player;
         let computer= this.state.computer; 
-        let moveHistory= this.state.moveHistory;
         this.setCompMoves()
         this.setState({disabled: false})
         console.log(this.state)
@@ -53,11 +53,12 @@ class GameScreen extends Component{
             console.log('Combatants are evenly matched')
             let x=Math.floor(Math.random()*2)
             if (x === 0) {
-              this.setState({playerTurn: false})
+              this.setState({playerTurn: false}) //not getting set
+              console.log(this.state.playerTurn)
               this.setState({disabled: true})
               console.log("Your Opponent takes the first move!")
               this.compTurn()
-              console.log(moveHistory)
+              console.log(this.state.playerTurn)
             }
             else {
               this.setState({playerTurn: true})
@@ -76,7 +77,9 @@ class GameScreen extends Component{
     }
     // Game Methods
     attack=()=>{ //Deals damage equilavent to attack stat
-        if (this.state.playerTurn === true){
+        if (this.state.playerTurn === null){
+            console.log("PlayerTurn Null")
+        } else if (this.state.playerTurn === true){
             let compObj= this.state.computer
             let playerAtk= (this.state.player.attack-this.state.computer.defense)
             compObj.hp = compObj.hp - playerAtk
@@ -85,20 +88,23 @@ class GameScreen extends Component{
             let action =`You dealt ${playerAtk} damage`
             this.setState({moveHistory: [...this.state.moveHistory, action]})
             this.winLogic()
-        } else if(this.state.playerTurn === false){
+        } else {
             let playerObj= this.state.player
             let compAtk= (this.state.computer.attack-this.state.player.defense)
             playerObj.hp = playerObj.hp - compAtk
             this.setState({player: playerObj});
 
             let action=`You took ${compAtk} damage`
+            console.log(action)
             this.setState({moveHistory: [...this.state.moveHistory, action]})
             this.winLogic()
         }
     }
     block=()=>{ //Raises defense stat (turn-based version)
         let buffDef=''
-        if (this.state.playerTurn === true){
+        if (this.state.playerTurn === null){
+            console.log("PlayerTurn Null")
+        } else if (this.state.playerTurn === true){
             let playerObj= this.state.player
             if (playerObj.defense < 15){
                 buffDef= 5
@@ -134,7 +140,9 @@ class GameScreen extends Component{
         }
     }
     recover=()=>{ //Recovers Hp equivalent to hp stat
-        if(this.state.playerTurn === true){
+        if (this.state.playerTurn === null){
+            console.log("PlayerTurn Null")
+        } else if(this.state.playerTurn === true){
         let playerObj= this.state.player
             if (playerObj.hp >= playerObj.maxHp) {
                 playerObj.hp = playerObj.maxHp
@@ -148,7 +156,7 @@ class GameScreen extends Component{
                 this.setState({moveHistory: [...this.state.moveHistory, action]})
                 this.winLogic()
             }
-        } else if (this.state.playerTurn === false){
+        } else {
         let compObj= this.state.computer
             if (compObj.hp >= compObj.maxHp) {
                 compObj.hp = compObj.maxHp
@@ -175,7 +183,9 @@ class GameScreen extends Component{
             trickVal= 15;
         }
         // Apply trickery action to Player/Computer
-        if (this.state.playerTurn === true){
+        if (this.state.playerTurn === null){
+            console.log("PlayerTurn Null")
+        } else if (this.state.playerTurn === true){
             let playerObj= this.state.player
             let oStat= playerObj[`${trickStat}`]
             // Trickery Buff Caps
@@ -236,9 +246,11 @@ class GameScreen extends Component{
     }
     compTurn=()=>{ //Selects 1st element in Computer Moves, assigns to action and removes it from array
         // let compObj= this.state.computer
-        let computerMoves = this.state.computerMoves
+        let computerMoves = this.state.computerMoves;
         let action = computerMoves.shift()
-        // computerMoves.shift();
+        console.log(action)
+        console.log(computerMoves)
+
         // Executes action method based on action string
         if (action === 'attack'){
             this.attack()
@@ -262,6 +274,7 @@ class GameScreen extends Component{
     // }
     nextTurn=()=>{ //Changes state of playerTurn to determine the next turn
         this.setState({playerTurn: !this.state.playerTurn})
+        // console.log(this.state)
         if (this.state.playerTurn === false){
             console.log('playerTurn=false')
             // this.compTurn()
@@ -269,9 +282,7 @@ class GameScreen extends Component{
             console.log('playerTurn=true')
         }
     }
-    winLogic=()=>{
-        console.log('call winLogic')
-        console.log(this.state)
+    resetStats=()=>{ //Not working
         const ogPlayer={
             title:"Player",
             name: "User Knight",
@@ -292,20 +303,22 @@ class GameScreen extends Component{
             recover: 10,
             spd: 1,
         }
+        this.setState({ 
+            player: ogPlayer,
+            computer: ogComputer,
+            disabled: null, 
+        })
+    }
+    winLogic=()=>{
+        console.log('call winLogic')
+        console.log(this.state)
         if (this.state.player.hp <= 0){
+            this.resetStats()
             alert("You have been defeated")
-            this.setState({
-                player: ogPlayer,
-                computer: ogComputer,
-                disabled: true})
             // console.log(this.state.moveHistory)
         } else if (this.state.computer.hp <= 0){
+            this.resetStats()
             alert("You are Victorious!")
-            this.setState({
-                player: ogPlayer,
-                computer: ogComputer,
-                disabled: true
-            })
             // console.log(this.state.moveHistory)
         } else {
             this.nextTurn()
@@ -316,7 +329,7 @@ class GameScreen extends Component{
         let player= this.state.player;
         let computer= this.state.computer;
         let moveHistory= this.state.moveHistory.map((move,index)=>{
-            console.log(move)
+            // console.log(move)
             // use to match with color with player? (this.state.playerTurn===true)
             if (index%2===0){
                 return(
@@ -357,7 +370,7 @@ class GameScreen extends Component{
                         <h2>{computer.title}</h2>
                         <progress id="hpBar" value={this.state.computer.hp} max='100'></progress>
                     </div>
-                    {this.state.playerTurn ? this.state.disabled :
+                    {this.state.playerTurn || this.state.playerTurn===null ? this.state.disabled :
                         <div className="actionbox">
                             <button className="action" id="attack" onClick={this.attack}>Attack!</button>
                             <button className="action" id="defend" onClick={this.block}>Block</button>

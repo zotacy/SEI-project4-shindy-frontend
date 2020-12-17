@@ -15,7 +15,7 @@ class Header extends Component{
             return(
                 <header className="App-header">
                     <Link to="/"><h1 id="header-link">Shindy</h1></Link>   
-                    <Link to={`/profile/${this.props.userId}`}><h3>Profile</h3></Link>
+                    <Link to={`/profile/${this.props.userId}`}><h3> {this.props.user.username}'s Profile</h3></Link>
                     <button onClick={this.handleLogout}>Log out</button>                  
                 </header>
             )
@@ -23,8 +23,10 @@ class Header extends Component{
             return(
                 <header className="App-header">
                     <Link to="/"><h1 id="header-link">Shindy</h1></Link>  
-                    <Link to="/login"><button>Login</button></Link>
-                    <Link to="/signup"><button>Signup</button></Link>                     
+                    <div className="buttonContainer">
+                        <Link to="/login"><button>Login</button></Link>
+                        <Link to="/signup"><button>Signup</button></Link>    
+                    </div>                 
                 </header>
             )
         }

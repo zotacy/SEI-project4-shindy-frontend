@@ -3,7 +3,6 @@ import axios from 'axios';
 // import bootstrap from 'bootstrap';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import './App.css';
-// import Homepage from '../Homepage/Homepage'
 import PlayerProfile from '../PlayerProfile/PlayerProfile';
 import Aheader from '../Aheader/Header';
 import Afooter from '../Afooter/Footer';
@@ -47,6 +46,16 @@ class App extends Component {
       userId: response.data.userId,
       loggedIn: true
     })
+    // Adds Inital Character for Player
+    await axios.post(`${shindyBackendUrl}/chars`,{
+      name:`${event.target.username.value} Knight`,
+      hp: 100,
+      attack: 25,
+      defense: 5,
+      recover: 10,
+      spd: 1,
+      userId: response.data.userId,
+    })
     this.getProfile()
   }
   login= async(event)=>{
@@ -55,7 +64,6 @@ class App extends Component {
       username: event.target.username.value,
       password: event.target.password.value
     })
-    console.log(response.data.userId)
     this.setState({
       userId: response.data.userId,
       loggedIn: true
@@ -106,10 +114,10 @@ class App extends Component {
       userId: event.target.userId.value,
       // characterId: event.target.userId.value
     })
-    console.log("clicked")
-    console.log(response.data.newCharacter)
-    this.setState({newCharacter:response.data.newCharacter})
-    console.log("character added")
+    // console.log("clicked")
+    // console.log(response.data.newCharacter)
+    // this.setState({newCharacter:response.data.newCharacter})
+    // console.log("character added")
     this.getProfile()
   }
   updateCharacter = async(event)=>{
@@ -155,7 +163,8 @@ class App extends Component {
               // this.state.loggedIn ? <Redirect to={`/profile/${this.state.userId}`}/>
             }/>
             <Route path="/signup" component={(routerProps)=>
-              <Signup {...routerProps} user={this.state.user} userId={this.state.userId} signup={this.signup} login={this.login}/>}/>
+              <Signup {...routerProps} user={this.state.user} userId={this.state.userId} 
+                signup={this.signup} login={this.login}/>}/>
             {/* In sign-up route use create character to build "Shindy Knight" for new profiles */}
             <Route path="/profile/:id" component={(routerProps)=>
               <PlayerProfile {...routerProps} {...this.state}

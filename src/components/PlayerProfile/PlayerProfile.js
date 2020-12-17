@@ -11,7 +11,7 @@ class PlayerProfile extends Component{
             username: '',
             password: '',
             show:false,
-            primaryCharacter:{},
+            primaryCharacter:'',
 
             hp:'',
             atk:'',
@@ -29,6 +29,12 @@ class PlayerProfile extends Component{
     toggleShow=()=>{
         this.setState({show: !this.state.show})
     }
+    // togglePrimary=(event)=>{
+    //     event.preventDefault();
+    //     let primaryCharacter = this.event.target
+    //     // this.setState({
+    //     //     primaryCharacter: })
+    // }
     render(){
         const playerDetails= this.props.user;
         console.log(playerDetails)
@@ -37,7 +43,7 @@ class PlayerProfile extends Component{
             return(
                 <div className="characterInfo" key={index}>
                     <form onSubmit={this.props.updateCharacter}>
-                        <p id="charName">{character.name}</p>
+                        <p id="charName" onClick={this.togglePrimary}>{character.name}</p>
                         <input id='charId' type="hidden" name="characterId" value={character.id}/>
                         <p>Hp:</p><input id="hpStat" type="text" name="hp" value={this.state.hp||character.hp} onChange={this.handleChange}/><br/>
                         <p>Atk:</p><input id="atkStat" type="text" name="attack" value={this.state.atk||character.attack} onChange={this.handleChange}/><br/>
@@ -51,7 +57,6 @@ class PlayerProfile extends Component{
                 </div>
             )
         })
-        
         return(
             <main className="profileBlock">
               <div className="playerInfo">
