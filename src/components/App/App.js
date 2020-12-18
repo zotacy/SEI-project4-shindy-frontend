@@ -10,7 +10,6 @@ import Login from '../PlayerLogin/Login';
 import Signup from '../PlayerLogin/Signup';
 import GameScreen from '../GameScreen/Game';
 import Game from '../GameScreen/GameV1';
-// import Game from '../GameAlt/GameAlt';
 
 // const shindyBackendUrl = "http://localhost:3001/api"
 const shindyBackendUrl = "https://shindy-api.herokuapp.com/"

@@ -117,5 +117,32 @@ fullCompTurn=()=>{
     return compAction()   
 }
 ```
-
+Automatic character creation when player creates new profile
+```js
+signup= async(event)=>{
+    event.preventDefault()
+    let response = await axios.post(`${shindyBackendUrl}/auth/signup`,{
+      name: event.target.name.value,
+      email: event.target.email.value,
+      username: event.target.username.value,
+      password: event.target.password.value,
+    })
+    console.log(response.data)
+    this.setState({
+      userId: response.data.userId,
+      loggedIn: true
+    })
+    // Adds Inital Character for Player
+    await axios.post(`${shindyBackendUrl}/chars`,{
+      name:`${event.target.username.value} Knight`,
+      hp: 100,
+      attack: 25,
+      defense: 5,
+      recover: 10,
+      spd: 1,
+      userId: response.data.userId,
+    })
+    this.getProfile()
+  }
+  ```
 
