@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './GameScreen.css';
+import './Game.css';
 
 class GameScreen extends Component{
     constructor(){
@@ -267,11 +267,11 @@ class GameScreen extends Component{
             this.winLogic()
         }
     }
-    // fullCompTurn=()=>{
-    //     let compActions = [this.attack,this.block,this.recover,this.trickery]
-    //     let compAction = compActions[Math.floor(Math.random() * compActions.length)] 
-    //     return compAction()
-    // }
+    fullCompTurn=()=>{
+        let compActions = [this.attack,this.block,this.recover,this.trickery]
+        let compAction = compActions[Math.floor(Math.random() * compActions.length)] 
+        return compAction()
+    }
     nextTurn=()=>{ //Changes state of playerTurn to determine the next turn
         this.setState({playerTurn: !this.state.playerTurn})
         // console.log(this.state)
@@ -372,10 +372,11 @@ class GameScreen extends Component{
                     </div>
                     {this.state.playerTurn || this.state.playerTurn===null ? this.state.disabled :
                         <div className="actionbox">
-                            <button className="action" id="attack" onClick={this.attack}>Attack!</button>
+                            <button className="action" id="attack" onClick={this.fullCompTurn}>Comp Action</button>
+                            {/* <button className="action" id="attack" onClick={this.attack}>Attack!</button>
                             <button className="action" id="defend" onClick={this.block}>Block</button>
                             <button className="action" id="recover" onClick={this.recover}>Recover</button>
-                            <button className="action" id="trick" onClick={this.trickery}>Trickery</button>
+                            <button className="action" id="trick" onClick={this.trickery}>Trickery</button> */}
                         </div>
                     }
                 </div>

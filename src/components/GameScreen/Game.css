@@ -75,16 +75,26 @@ p#even{
     background-color: palegreen;
 }
 .characterbox{
-     border: 2px solid black;
-     border-radius: 5px;
-     margin: 5px auto;
-     padding: 10px 5px;
-     width: 95%;
-     height: 60px;
-     position: relative;
+    display:flex;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 5px auto;
+    padding: 10px 5px;
+    width: 95%;
+    height: 60px;
+    position: relative;
 }
 .char{
-    margin-bottom: 10px;
+    display:flex;
+    flex-wrap:wrap;
+    float:left;
+    text-align:left;
+
+    font-size:120%;
+    max-width: 20%;
+    height: 100%;
+    margin:-10px 0 -0 5px;
+    /* transform: scale(0.8); */
 }
 #hpBar{
     background-color: green;

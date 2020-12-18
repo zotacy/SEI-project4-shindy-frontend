@@ -8,7 +8,9 @@ import Aheader from '../Aheader/Header';
 import Afooter from '../Afooter/Footer';
 import Login from '../PlayerLogin/Login';
 import Signup from '../PlayerLogin/Signup';
-import GameScreen from '../GameScreen/GameScreen';
+import GameScreen from '../GameScreen/Game';
+import Game from '../GameScreen/GameV1';
+// import Game from '../GameAlt/GameAlt';
 
 const shindyBackendUrl = "http://localhost:3001/api"
 
@@ -104,7 +106,7 @@ class App extends Component {
   // Methods: User Characters (Add,Update,Delete)
   addCharacter = async(event)=>{ //add event because it is connected to a form
     event.preventDefault()
-    let response= await axios.post(`${shindyBackendUrl}/chars`,{
+    await axios.post(`${shindyBackendUrl}/chars`,{
       name: event.target.name.value,
       hp: event.target.hp.value,
       attack: event.target.attack.value,
@@ -114,10 +116,6 @@ class App extends Component {
       userId: event.target.userId.value,
       // characterId: event.target.userId.value
     })
-    // console.log("clicked")
-    // console.log(response.data.newCharacter)
-    // this.setState({newCharacter:response.data.newCharacter})
-    // console.log("character added")
     this.getProfile()
   }
   updateCharacter = async(event)=>{
@@ -142,7 +140,6 @@ class App extends Component {
     await axios.delete(`${shindyBackendUrl}/chars/${characterId}`)
     this.getProfile()
   }
-
   // Render Pages
   render(){
     // console.log(this.state)
@@ -171,6 +168,9 @@ class App extends Component {
                 addCharacter={this.addCharacter} updateCharacter={this.updateCharacter} deleteCharacter={this.deleteCharacter}
                 logout={this.logout} updateProfile ={this.updateProfile} deleteProfile={this.deleteProfile}
               />
+            }/>
+            <Route path="/shindyplay" component={(routerProps)=>
+              <Game {...routerProps}/>
             }/>
           </Switch>
         </main>
