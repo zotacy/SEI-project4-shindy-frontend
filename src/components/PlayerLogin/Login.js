@@ -7,7 +7,7 @@ class Login extends Component{
         await this.props.login(event)
         setTimeout(()=>{
             this.props.history.push(`/profile/${this.props.userId}`)
-        },300)
+        },100)
     }
     render(){
         return(

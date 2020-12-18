@@ -1,11 +1,11 @@
 ## Initial Purpose
 The purpose of this project is to develop a simple and fun turn-based combat game. Users will be able to play the game as a guest when they arrive on the page and if they enjoy it they will be able to create an account. By creating an account they will have access to build their own custom characters as well as play with the pre-loaded character. The players will be able to play games against the computer in the intial stages of the application with hope to broaden the game to allow pvp as well.
 
-## Links
-Front-end Repo: https://github.com/zotacy/SEI-project4-shindy-frontend
-Front-end Heroku: https://shindyapp.herokuapp.com/shindy
-Back-end Repo: https://github.com/zotacy/SEI-project4-shindy-backend
-Back-end Heroku: https://shindy-api.herokuapp.com/
+## Links: Repos & Heroku
+- Front-end Repo: https://github.com/zotacy/SEI-project4-shindy-frontend
+- Front-end Heroku: https://shindyapp.herokuapp.com/shindy
+- Back-end Repo: https://github.com/zotacy/SEI-project4-shindy-backend
+- Back-end Heroku: https://shindy-api.herokuapp.com/
 
 ## Getting Started
 ### Wireframe
@@ -22,7 +22,7 @@ Back-end Heroku: https://shindy-api.herokuapp.com/
 
 ## Technology Used
 * Visual Studio Code
-* Node.js/Express, MVC, PostGreSQL
+* Node.js/Express, MVC, PostGreSQL, Sequelize
 * React Web Framework, DOM-Maniplulation 
 * APIs, Axios
 * Heroku, GitHub

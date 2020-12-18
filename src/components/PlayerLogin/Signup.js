@@ -9,7 +9,7 @@ class Signup extends Component{
     await this.props.login(event)
     setTimeout(()=>{
       this.props.history.push(`/profile/${this.props.userId}`)
-    },500)
+    },100)
   }
   render(){  
     return(
