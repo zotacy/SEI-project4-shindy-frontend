@@ -45,15 +45,18 @@ class PlayerProfile extends Component{
                     <form onSubmit={this.props.updateCharacter}>
                         <p id="charName" onClick={this.togglePrimary}>{character.name}</p>
                         <input id='charId' type="hidden" name="characterId" value={character.id}/>
-                        <p>Hp:</p><input id="hpStat" type="text" name="hp" value={this.state.hp||character.hp} onChange={this.handleChange}/><br/>
-                        <p>Atk:</p><input id="atkStat" type="text" name="attack" value={this.state.atk||character.attack} onChange={this.handleChange}/><br/>
-                        <p>Def:</p><input id="defStat" type="text" name="defense" value={this.state.def||character.defense} onChange={this.handleChange}/><br/>
-                        <p>Rec:</p><input id="defStat" type="text" name="recover" value={this.state.rec||character.recover} onChange={this.handleChange}/><br/>
-                        <p>Spd:</p><input id="spdStat" type="text" name="spd" value={this.state.spd||character.spd} onChange={this.handleChange}/><br/>
+                        <span>Hp:</span><input id="hpStat" className="stat" type="text" name="hp" value={this.state.hp||character.hp} onChange={this.handleChange}/><br/>
+                        <span>Atk:</span><input id="atkStat" className="stat" type="text" name="attack" value={this.state.atk||character.attack} onChange={this.handleChange}/><br/>
+                        <span>Def:</span><input id="defStat" className="stat" type="text" name="defense" value={this.state.def||character.defense} onChange={this.handleChange}/><br/>
+                        <span>Rec:</span><input id="defStat" className="stat" type="text" name="recover" value={this.state.rec||character.recover} onChange={this.handleChange}/><br/>
+                        <span>Spd:</span><input id="spdStat" className="stat" type="text" name="spd" value={this.state.spd||character.spd} onChange={this.handleChange}/><br/>
                         
                         <input type="submit" value="Update" className="button"/>
                         <button id={character.id} onClick={this.props.deleteCharacter}>Delete</button>
                     </form>
+                    {/* <form onSubmit={this.props.deleteCharacter} >
+                        <input type="submit" id={character.id} value="Delete" className="button"/>
+                    </form> */}
                 </div>
             )
         })

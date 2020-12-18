@@ -1,6 +1,12 @@
 ## Initial Purpose
 The purpose of this project is to develop a simple and fun turn-based combat game. Users will be able to play the game as a guest when they arrive on the page and if they enjoy it they will be able to create an account. By creating an account they will have access to build their own custom characters as well as play with the pre-loaded character. The players will be able to play games against the computer in the intial stages of the application with hope to broaden the game to allow pvp as well.
 
+## Links
+Front-end Repo: https://github.com/zotacy/SEI-project4-shindy-frontend
+Front-end Heroku: https://shindyapp.herokuapp.com/shindy
+Back-end Repo: https://github.com/zotacy/SEI-project4-shindy-backend
+Back-end Heroku: https://git.heroku.com/shindy-api.git
+
 ## Getting Started
 ### Wireframe
 ![Wireframe](public/Wireframes.png)
@@ -23,7 +29,6 @@ The purpose of this project is to develop a simple and fun turn-based combat gam
 * Lucid Chart (Wireframe Designs)
 
 ## App Components
-
 |**Components**|**Description**|
 |--------------|---------------|
 |App (Homepage)|Main screen when app is pulled up. Includes: intro to game, method to Login/Signup, method to play game (as guest)|
@@ -61,8 +66,6 @@ Requirements for the project are as follows:
 - As a user, I should be able to access the home page from my profile (and stay logged in).
 - As a user, I should be able to play the game "Shindy" (as a guest or account owner).
 - As a user, I should be able to understand how to play the game "Shindy" (Intuitive controls).
-
-## Heroku App Website Link
 
 ## Standout Code Snippets
 Utilizing terniaries to display and hide objects. 

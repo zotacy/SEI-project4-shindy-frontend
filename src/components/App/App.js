@@ -13,7 +13,7 @@ import Game from '../GameScreen/GameV1';
 // import Game from '../GameAlt/GameAlt';
 
 // const shindyBackendUrl = "http://localhost:3001/api"
-const shindyBackendUrl = "https://git.heroku.com/shindy-api.git"
+const shindyBackendUrl = "https://shindy-api.herokuapp.com/"
 
 class App extends Component {
   constructor(props){

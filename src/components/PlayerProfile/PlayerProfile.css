@@ -38,7 +38,7 @@ h1{
   height:max-content;
   min-height:250px;
   /* width:max-content; */
-  max-width:500px;
+  max-width:400px;
   margin: 10px;
   padding: 0 5px 0 5px;
 }
@@ -48,7 +48,9 @@ h1{
   justify-content:space-evenly;
 }
 .characterInfo{
+  display:flex;
   width:max-content;
+  min-width:150px;
   border:2px solid black;
   border-radius:10px;
   background-color:whitesmoke;
@@ -67,17 +69,32 @@ h1{
 }
 span{
   font-weight:bold;
-  font-size:95%;
+  font-size:90%;
+}
+.stat{
+  align-content:right;
+  width:50px;
+  padding-left:3px;
+  margin:0 auto;
+  margin-left:5px;
+  height:content;
+  /* width:content; */
+  /* text-align:center; */
 }
 /*----------- Other ----------*/
 .button{
   transform:scale(.75);
   padding:2px 4px;
   box-shadow: 2px 2px black;
-  border-radius:10px;
+  border:0.5px solid black;
+  border-radius:15px;
+  padding: 0px 5px ;
   cursor:pointer;
   text-decoration: none;
   outline:none;
+}
+button{
+  box-shadow: 2px 2px black;
 }
 .charCap{
   border:2px solid black;
