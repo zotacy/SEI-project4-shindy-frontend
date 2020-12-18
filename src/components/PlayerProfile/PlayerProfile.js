@@ -77,9 +77,17 @@ class PlayerProfile extends Component{
                 </div>
                 <div className="charactersBlock">
                     <h1>Player Characters</h1>
-                    <div className="addCharacter">
-                    <button onClick={this.toggleShow} id="toggle">Add Character</button> 
+                    
+                    {this.props.user.Characters.length <4 
+                        ? <button onClick={this.toggleShow} id="toggle">Add Character</button> 
+                        : <div className="charCap">
+                            <h2>Reached Character Max of 4</h2><br/>
+                            <h3>(delete or update current character)</h3>
+                         </div>
+                    }
+                    <br/>
                     {this.state.show ? 
+                        <div className="addCharacter">
                         <form onSubmit={this.props.addCharacter} id="addCharForm">
                             <input type="text" name="name" placeholder="Character Name/Title"/><br/>
                             <input type="text" name="hp" placeholder="Max Hp"/><br/>
@@ -90,9 +98,10 @@ class PlayerProfile extends Component{
                             <input type="hidden" name="userId" value={playerDetails.id}/>
                             <input type="submit" id="submit" placeholder="Add Character" className="button"/>
                         </form>
+                        </div>
                         : null
                     }
-                    </div>
+                    {/* </div> */}
                     <div className="characters">
                         {characters}
                     </div>

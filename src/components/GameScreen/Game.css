@@ -44,13 +44,16 @@ div[disabled]{
 .moveHistory{
     grid-area: body;
     text-align:left;
-    display:flex;
-    flex-direction:column-reverse;
+    display:flex; 
+    flex-direction:column-reverse; 
     justify-content:flex-end;
     margin: 0 auto;
-    width:95%;
+    margin-right:5px;
+    width:90%;
     max-width: 198px;
-    overflow:scroll;
+    overflow-y:scroll;
+    scroll-behavior: smooth;
+    
 }
 #title{
     grid-area: title;
