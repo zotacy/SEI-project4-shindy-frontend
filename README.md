@@ -40,18 +40,17 @@ Requirements for the project are as follows:
 3. Implement thoughtful user stories.
 4. Be deployed online through Heroku.
 
-
 ## App Features for Next Rendition
 1. Improved Character Customization
-    - Add additional preset characters
+    - Add stat caps for characters
     - Add character traits (combat oriented)
-    - Improved css/styling for characters
 2. Game Logic
-    - Improved css/styling/layout
+    - Computer automatically executes it's turn with a button click
     - PvP
-    - Include character-specific moves/traits
-3. Deployment
-    - Optimized for mobile and web
+    - Allow logged in players to use their personal characters for combat.
+3. Overall
+    - Deployment: Optimized for mobile and web
+    - Styling: Improved css/styling
 
 ## User Stories
 - As a user, I should be able to create an account.
@@ -64,5 +63,56 @@ Requirements for the project are as follows:
 - As a user, I should be able to understand how to play the game "Shindy" (Intuitive controls).
 
 ## Heroku App Website Link
+
+## Standout Code Snippets
+Utilizing terniaries to display and hide objects. 
+Player Profile example: Adding a character Cap
+```js
+{this.props.user.Characters.length <4 
+    ? <button onClick={this.toggleShow} id="toggle">Add Character</button> 
+    : <div className="charCap">
+        <h2>Reached Character Max of 4</h2><br/>
+        <h3>(delete or update current character)</h3>
+        </div>
+}
+<br/>
+{this.state.show ? 
+    <div className="addCharacter">
+    <form onSubmit={this.props.addCharacter} id="addCharForm">
+        <input type="text" name="name" placeholder="Character Name/Title"/><br/>
+        <input type="text" name="hp" placeholder="Max Hp"/><br/>
+        <input type="text" name="attack" placeholder="Atk Stat"/><br/>
+        <input type="text" name="defense" placeholder="Defense Stat"/><br/>
+        <input type="text" name="recover" placeholder="Recover Stat"/><br/>
+        <input type="text" name="spd" placeholder='spd (enter 1)'/><br/>
+        <input type="hidden" name="userId" value={playerDetails.id}/>
+        <input type="submit" id="submit" placeholder="Add Character" className="button"/>
+    </form>
+    </div>
+    : null
+}
+```
+Game Screen: Displaying buttons for character turns
+```js
+<div className="characterbox" id="playerC">
+                    <div className="char" >
+                        <h2>{enemy.name}</h2>
+                    </div>
+                    <progress id="hpBar" value={this.state.enemy.hp} max='100'></progress>
+                    {this.state.currentTurn ==='Comp' 
+                        ? <button className="action" id="randAction" onClick={this.fullCompTurn}>Comp Action</button> 
+                        : this.state.disabled
+                    }
+                </div>
+```
+
+Setting Game Logic for Computer to choose a random Action/methods:
+```js
+fullCompTurn=()=>{
+    let compActions = [this.attack,this.block,this.recover,this.trickery]
+    let compAction = compActions[Math.floor(Math.random() * compActions.length)] 
+    return compAction()   
+}
+```
 
 

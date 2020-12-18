@@ -77,7 +77,6 @@ class PlayerProfile extends Component{
                 </div>
                 <div className="charactersBlock">
                     <h1>Player Characters</h1>
-                    
                     {this.props.user.Characters.length <4 
                         ? <button onClick={this.toggleShow} id="toggle">Add Character</button> 
                         : <div className="charCap">

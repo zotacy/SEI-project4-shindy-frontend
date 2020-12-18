@@ -230,8 +230,7 @@ class GameScreen extends Component{
     fullCompTurn=()=>{
         let compActions = [this.attack,this.block,this.recover,this.trickery]
         let compAction = compActions[Math.floor(Math.random() * compActions.length)] 
-        return compAction()
-        
+        return compAction()   
     }
     nextTurn=()=>{ //Changes state of currentTurn to determine the next turn (Cannot contain CompTurn...)
         console.log("Calling next Turn")
