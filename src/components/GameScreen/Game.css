@@ -50,7 +50,7 @@ div[disabled]{
     margin: 0 auto;
     width:95%;
     max-width: 198px;
-    overflow-y:scroll;
+    overflow:scroll;
 }
 #title{
     grid-area: title;
@@ -140,6 +140,12 @@ button{
 #trick{
     grid-row: 2;
     grid-column: 2;
+}
+#randAction{
+    transform: scale(1.8);
+    margin:auto;
+    margin-right:22%;
+    margin-top:7%;
 }
 
 

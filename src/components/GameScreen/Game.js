@@ -77,8 +77,6 @@ class GameScreen extends Component{
             console.log("currentTurn Null")
         } else if (this.state.currentTurn === "Player"){
             let enemyObj= this.state.enemy
-            console.log(enemyObj)
-            console.log(this.state)
             let playerAtk= (this.state.player.attack-this.state.enemy.defense)
             enemyObj.hp = enemyObj.hp - playerAtk
             this.setState({enemy: enemyObj});
@@ -93,7 +91,6 @@ class GameScreen extends Component{
             this.setState({player: playerObj});
 
             let action=`You took ${compAtk} damage`
-            console.log(action)
             this.setState({moveHistory: [...this.state.moveHistory, action]})
             this.winLogic()
         }
@@ -132,7 +129,6 @@ class GameScreen extends Component{
                 buffDef= 'MAXED'
                 action=`Opponent is fiddling with their armor`
             }
-            console.log(action)
             this.setState({moveHistory: [...this.state.moveHistory, action]})
             this.winLogic()
         }
@@ -235,31 +231,29 @@ class GameScreen extends Component{
         let compActions = [this.attack,this.block,this.recover,this.trickery]
         let compAction = compActions[Math.floor(Math.random() * compActions.length)] 
         return compAction()
+        
     }
-    nextTurn=()=>{ //Changes state of currentTurn to determine the next turn
-        // console.log(this.state)
+    nextTurn=()=>{ //Changes state of currentTurn to determine the next turn (Cannot contain CompTurn...)
+        console.log("Calling next Turn")
         if (this.state.currentTurn === 'Comp'){
             this.setState({currentTurn: 'Player'})
             console.log('Player Turn')
-            console.log(this.state)
-            // this.compTurn()
         } else if (this.state.currentTurn === "Player"){
             this.setState({currentTurn: 'Comp'})
             console.log('Comp Turn')
-            console.log(this.state)
         }
     }
     winLogic=()=>{
         console.log('call winLogic')
         console.log(this.state)
         if (this.state.player.hp <= 0){
-            this.resetState()
             alert("You have been defeated")
-            // console.log(this.state.moveHistory)
+            this.setState({disabled:null})
+            console.log(this.state.moveHistory)
         } else if (this.state.enemy.hp <= 0){
-            this.resetState()
             alert("You are Victorious!")
-            // console.log(this.state.moveHistory)
+            this.setState({disabled:null})
+            console.log(this.state.moveHistory)
         } else {
             this.nextTurn()
         }
@@ -283,7 +277,7 @@ class GameScreen extends Component{
         return(
             <main className="gameMain">
             <div className="gameScreen">
-                {/* <!-- Player --> */}
+                {/* <!-- Player Card--> */}
                 <div className="characterbox" id="player1">
                     <div className="char" >
                         <h2>{player.name}</h2>
@@ -303,21 +297,15 @@ class GameScreen extends Component{
                 <div className="middle-space">
                     <h1 id="play" onClick={this.playGame}>Play</h1>
                 </div>
-                {/* <!-- enemy --> */}
+                {/* <!-- Enemy Card--> */}
                 <div className="characterbox" id="playerC">
                     <div className="char" >
                         <h2>{enemy.name}</h2>
                     </div>
                     <progress id="hpBar" value={this.state.enemy.hp} max='100'></progress>
-                    {this.state.currentTurn ==='Comp' ? 
-                        <div className="actionbox">
-                            <button className="action" id="attack" onClick={this.fullCompTurn}>Comp Action</button>
-                            {/* <button className="action" id="attack" onClick={this.attack}>Attack!</button>
-                            <button className="action" id="defend" onClick={this.block}>Block</button>
-                            <button className="action" id="recover" onClick={this.recover}>Recover</button>
-                            <button className="action" id="trick" onClick={this.trickery}>Trickery</button> */}
-                        </div>
-                    : this.state.disabled
+                    {this.state.currentTurn ==='Comp' 
+                        ? <button className="action" id="randAction" onClick={this.fullCompTurn}>Comp Action</button> 
+                        : this.state.disabled
                     }
                 </div>
             </div>

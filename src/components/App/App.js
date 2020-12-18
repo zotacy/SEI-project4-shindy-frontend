@@ -155,6 +155,9 @@ class App extends Component {
             <Route exact path="/" component={(routerProps)=>
               <GameScreen {...routerProps}/>
             }/>
+            <Route path="/shindy" component={(routerProps)=>
+              <GameScreen {...routerProps}/>
+            }/>
             <Route path="/login" component={(routerProps)=>
               <Login {...routerProps} userId={this.state.userId} login={this.login}/>
               // this.state.loggedIn ? <Redirect to={`/profile/${this.state.userId}`}/>
