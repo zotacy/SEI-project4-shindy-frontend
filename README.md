@@ -5,7 +5,7 @@ The purpose of this project is to develop a simple and fun turn-based combat gam
 Front-end Repo: https://github.com/zotacy/SEI-project4-shindy-frontend
 Front-end Heroku: https://shindyapp.herokuapp.com/shindy
 Back-end Repo: https://github.com/zotacy/SEI-project4-shindy-backend
-Back-end Heroku: https://git.heroku.com/shindy-api.git
+Back-end Heroku: https://shindy-api.herokuapp.com/
 
 ## Getting Started
 ### Wireframe
